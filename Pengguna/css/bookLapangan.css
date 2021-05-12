@@ -1,0 +1,50 @@
+.search-container input[type=text] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 16px;
+    border: 1px solid ;
+    width: 20%;
+    margin-left: 36px;
+  }
+
+.search-container button {
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    color: #0d7a6f;
+  }
+
+  .search-container button:hover {
+    background: #ccc;
+  }
+
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 450px;
+    height: 450px;
+    font-family: arial;
+    display: inline-block;
+    margin-left: 36px;
+    margin-top: 48px;
+    background: none;
+  }
+
+  .namaFasilitas{
+    text-align: center;
+    color: #0d7a6f;
+}
+
+.detail-peminjam{
+    margin-left: 8px;
+    color: #0d7a6f;
+}
+
+.card:hover{
+    transform: scale(1.1);
+    transition: 0.4s;
+}
+
