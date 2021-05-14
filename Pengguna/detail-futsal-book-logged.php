@@ -239,7 +239,7 @@
         <i class="fa fa-file-text-o" id="iconForm" aria-hidden="true" style="color: #0d7a6f; font-size: 24px;"> Form Booking</i>
         <form action="detail-futsal-book-logged.php" method="POST">
             <label for="">Pilih Tanggal</label> <br>
-            <input type="date" name="tanggal-pilihan" id="datePicker" value="" onchange="handler()"> <br> <br>
+            <input type="date" name="tanggal-pilihan" id="datePicker" value="" onchange="handler()" min="<?php echo date("Y-m-d"); ?>"> <br> <br>
 
             <label for="">Pilih jam mulai</label> <br>
             <input type="time" name="jam-mulai" id="jam-mulai" step="3600" min="06:00" max="21:00" onchange="handler()"> <br> <br>

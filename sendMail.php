@@ -27,9 +27,11 @@ if(isset($_POST['batalkanPesanan'])){
         $mail->isHTML(true);
         $mail->Subject = "Booking Lapangan Dibatalkan";
         $mail->Body = "<h3>Alasan Pembatalan: $message </h3>";
-
+        $mail->Body .= "<h5> Pasaga Unpar <br> Address : Jl. Cisitu Indah VI, Dago, Kecamatan Coblong, Kota Bandung, Jawa Barat 40135
+        <br> Phone : (022) 20451999 </h5>";
         $mail->send();
         $alert = '<span>Message dikirim!</span>';
+        header("Location: index.php");
     }
 
     catch(Exception $e){

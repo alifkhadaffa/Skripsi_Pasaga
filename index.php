@@ -1,5 +1,5 @@
-<?php include('server.php') ?>
-
+<?php include('Pengguna/server.php') ?>
+<?php include('sendMail.php') ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="detail-peminjam">
-                    <input type="text" id="idPemesanan" name="idPemesanan" value='<?php echo $row["ID_Pemesanan"]; ?>'>
+                    <input type="hidden" id="idPemesanan" name="idPemesanan" value='<?php echo $row["ID_Pemesanan"]; ?>'>
                         <p>Nama Peminjam : <?php echo $row["Nama"]."<br>"; ?></p>
                         <p>Email Peminjam : <?php echo $row["Email"]."<br>"; ?></p>
                         <p>Durasi Peminjam : 2 Jam , 14:00 - 16:00</p>
@@ -74,7 +74,6 @@
                 <div id="id01" class="w3-modal">
                     <div class="w3-modal-content">
                         <div class="w3-container">
-                        <input type="text" id="idPemesanan" name="idPemesanan" value='<?php echo $row["ID_Pemesanan"]; ?>'>
                             <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
                             <label for="">Masukkan Alasan Pembatalan (Required)</label> <br>
                             <textarea name="message" id="" cols="30" rows="10"></textarea> <br>
