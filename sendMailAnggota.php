@@ -9,36 +9,6 @@ $mail = new PHPMailer(true);
 
 $alert = '';
 
-if(isset($_POST['batalkanPesanan'])){
-    $message = $_POST['message'];
-
-    try{
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'unparpasaga@gmail.com';
-        $mail->Password = 'raisA6690';
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = '587';
-
-        $mail->setFrom('unparpasaga@gmail.com');
-        $mail->addAddress('alifkhadaffaaa@gmail.com');
-
-        $mail->isHTML(true);
-        $mail->Subject = "Booking Lapangan Dibatalkan";
-        $mail->Body = "<h3>Alasan Pembatalan: $message </h3>";
-        $mail->Body .= "<h5> Pasaga Unpar <br> Address : Jl. Cisitu Indah VI, Dago, Kecamatan Coblong, Kota Bandung, Jawa Barat 40135
-        <br> Phone : (022) 20451999 </h5>";
-        $mail->send();
-        $alert = '<span>Message dikirim!</span>';
-        header("Location: index.php");
-    }
-
-    catch(Exception $e){
-        $alert = '<span>Terjadi kesalahan, Message gagal dikirim! </span>';
-    }
-}
-
 if(isset($_POST['batalkanAnggota'])){
     $message = $_POST['message'];
 

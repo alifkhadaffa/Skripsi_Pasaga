@@ -4,6 +4,7 @@
     width: 350px;
     height: 385px;
     float: left;
+    display: inline-block;
     margin-left: 48px;
   }
   

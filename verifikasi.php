@@ -1,4 +1,5 @@
 <?php include('server.php') ?>
+<?php include('sendMail.php') ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,7 @@
     <title>Home Admin Pasaga</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/style-cardVerifikasi.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 </head>
 <body>
@@ -51,7 +53,21 @@
                             </div>
                         
                         <p><button id="btnAccept" style="margin-top : 40px">Accept</button></p>
-                        <p><button id="btnDecline" style="margin-top : 40px">Decline</button></p>
+                        <p><button id="btnDecline" style="margin-top : 40px" onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-red">Decline</button></p>
+
+                        <form action="verifikasi.php" method="post">
+                        <div id="id01" class="w3-modal">
+                            <div class="w3-modal-content">
+                                <div class="w3-container">
+                                    <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                                    <label for="">Masukkan Alasan Pembatalan Anggota(Required)</label> <br>
+                                    <textarea name="message" id="" cols="30" rows="10"></textarea> <br>
+                                    <button type="submit" name='batalkanAnggota' style="float:left; width:30%;padding:8px;background-color:#7a0d0d">Batalkan</button> <br> <br>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+
                         </div>
                         </div>
                         <?php
