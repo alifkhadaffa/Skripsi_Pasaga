@@ -91,23 +91,25 @@ input[type="file"] {
                 while($row = mysqli_fetch_array($results))
                 {
                     ?>
-                <form action="myBooking.php" method="post">
+                <form action="myBooking.php" method="post" enctype="multipart/form-data">
                 <div class="card-style">
-                    <div class="card">
+                    <div class="card" style="height:300px">
                     <img src="../Image/futsal.jpg" alt="Lap Futsal" style="width:40%; float: left;">
             
                     <div class="namaFasilitas">
                         <h3 style="color: #0d7a6f;"> <?php echo $row["Nama_Fasilitas"]."<br>"; ?> </h3>
                     </div>
 
-                    <div class="detail-peminjam">
+                    <div class="detail-peminjam" style="">
                         <input type="hidden" id="IdPemesanan" name="IdPemesanan" value='<?php echo $row["ID_Pemesanan"]; ?>'>
                         <p style="margin-bottom: 8px;margin-left:24px;color: #0a2724;">Booking untuk Tanggal: <?php echo $row["Tanggal_Transaksi"]."<br>"; ?> </p>
-                        <p style="margin-bottom: 8px;margin-left:30px;color: #0a2724;">Status Pemesanan: <?php echo $row["Status_Pemesanan"]."<br>"; ?> </p>
-                        <p style="margin-bottom: 8px;color: #0a2724;">Status Pembayaran: <?php echo $row["Status_Pembayaran"]."<br>"; ?> </p>
+                        <p style="margin-bottom: 8px;margin-left:-24px;color: #0a2724;">Status Pemesanan: <?php echo $row["Status_Pemesanan"]."<br>"; ?> </p>
+                        <p style="margin-bottom: 8px;margin-left:-20px;color: #0a2724;">Status Pembayaran: <?php echo $row["Status_Pembayaran"]."<br>"; ?> </p>
+                        <p style="margin-bottom: 8px;margin-left:-80px;color: #0a2724;">Bukti Pembayaran :</p>
+                        <img src="uploads/<?php echo $row["bukti_pembayaran"]?>" alt="" style="width:15%">
                     </div>
 
-                    <div class="btnAction">
+                    <div class="btnAction" style="margin-top:15%">
                         <button type="button" style="margin-right: 16px" id="btnBatal" onclick="document.getElementById('modalBatalkan').style.display='block'" class="w3-button w3-red">Batalkan</button>
                         <button type="button" id="btnKonfirmasi" onclick="document.getElementById('modalKonfirmasi').style.display='block'" class="w3-button w3-flat-turquoise">Konfirmasi Pembayaran</button>
                     </div>
@@ -130,12 +132,9 @@ input[type="file"] {
                                 <span onclick="document.getElementById('modalKonfirmasi').style.display='none'" class="w3-button w3-display-topright">&times;</span>
                                 <h2>Konfirmasi Pembayaran</h2>
                                 <p style="color:black">Bukti Pembayaran akan di proses maksimal 1x24 jam setelah upload. Anda akan menerima email jika pembayaran sudah diterima.</p>
-                                <div class="button-wrap">
-                                    <label class="new-button" for="upload"> Upload Bukti Pembayaran <br>
-                                    <input type="file" name="uploadBukti"/>
-                                </div>
-                                <button type="submit" class="btnDelete" name='btnUploadBuktiBayar' value='send' style="background-color: #0d7a6f;cursor:pointer;
-                                border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;margin-top:24px">Submit Bukti Pembayaran</button> <br><br>
+                                <label class="new-button" for="upload"> Upload Bukti Pembayaran <br>
+                                <input type="file" name="file">
+                                <button type="submit" class="btnUpload" name="btnUpload">Submit Bukti Pembayaran</button> <br><br>
                            </div>
                         </div>
                     </div>

@@ -160,4 +160,47 @@ if(isset($_POST['batalkanPesanan'])){
     $queryDelete = "DELETE FROM memesan WHERE ID_Pemesanan = $idPemesanan";
     $res = mysqli_query($db,$queryDelete);
 }
+
+//Konfirmasi Pembayaran dengan upload bukti transfer
+if(isset($_POST['btnUpload'])){
+    $file = $_FILES['file'];
+    $fileName = $_FILES['file']['name'];
+    $fileTmpName = $_FILES['file']['tmp_name'];
+    $fileSize = $_FILES['file']['size'];
+    $fileError = $_FILES['file']['error'];
+    $fileType = $_FILES['file']['type'];
+
+    $idPemesanan = $_POST['IdPemesanan'];
+
+    //File yang boleh di upload extensionnya apa aja
+    $fileExt = explode('.' , $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+
+    $allowed = array('jpg', 'jpeg' , 'png', 'pdf');
+
+    if(in_array($fileActualExt, $allowed)){
+        if($fileError === 0){
+            if($fileSize < 500000){
+                $fileNameNew = uniqid(',' , true).".".$fileActualExt;
+                $fileDestination = 'uploads/'.$fileNameNew;
+                move_uploaded_file($fileTmpName, $fileDestination);
+
+                //Insert into db
+                $sql = "UPDATE memesan SET bukti_pembayaran = '$fileNameNew' WHERE ID_Pemesanan = '$idPemesanan'";
+                mysqli_query($db , $sql);
+
+                header("Location: myBooking.php?uploadSuccess");
+            }
+            else{
+                echo "File is too big!";
+            }
+        }
+        else{
+            echo "There was an error uploading your file";
+        }
+    }
+    else{
+        echo "Extension file tidak diperbolehkan (input file JPG, JPEG, PNG, atau PDF only)";
+    }
+}
 ?>

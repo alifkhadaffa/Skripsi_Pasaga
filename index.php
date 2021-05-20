@@ -51,7 +51,7 @@
                         ?>
                 
                 <form action="index.php" method="post">
-                <div class="card" style="height:500px">
+                <div class="card" style="height:580px">
                     <img src="Image/futsal.jpg" alt="Lap Futsal" style="width:100%">
                     <div class="namaFasilitas">
                         <h3><?php echo $row["Nama_Fasilitas"]."<br>"; ?></h3>
@@ -64,8 +64,10 @@
                         <p>Durasi Peminjam : 2 Jam , 14:00 - 16:00</p>
                         <p>Booking untuk tanggal : <?php echo $row["Tanggal_Transaksi"]."<br>"; ?></p>
                         <p>Status Pembayaran : <?php echo $row["Status_Pembayaran"]."<br>"; ?></p>
+                        <p>Bukti Pembayaran : <img src="Pengguna/uploads/<?php echo $row["bukti_pembayaran"]?>" alt="" style="width:15%"></p>
+
                     </div>
-                    <div class="buttonaction" style="margin-top:76px">
+                    <div class="buttonaction" style="margin-top:50px">
                     <p><button id="btnAccept_index" style="padding:12px;">Accept</button></p>
                     <p><button type="button" id="btnDecline" name="btnDecline" style="margin-top:0px" onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-red">Decline</button></p>
                     </div>
