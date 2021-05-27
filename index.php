@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="css/style-cardVerifikasi.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <style>
+    </style>
 </head>
 <body>
     <div class="wrapper">
@@ -58,25 +60,26 @@
                     </div>
 
                     <div class="detail-peminjam">
-                    <input type="hidden" id="idPemesanan" name="idPemesanan" value='<?php echo $row["ID_Pemesanan"]; ?>'>
+
                         <p>Nama Peminjam : <?php echo $row["Nama"]."<br>"; ?></p>
                         <p>Email Peminjam : <?php echo $row["Email"]."<br>"; ?></p>
                         <p>Durasi Peminjam : 2 Jam , 14:00 - 16:00</p>
-                        <p>Booking untuk tanggal : <?php echo $row["Tanggal_Transaksi"]."<br>"; ?></p>
+                        <p>Booking untuk tanggal : <?php echo $row["Tanggal_Pemakaian"]."<br>"; ?></p>
                         <p>Status Pembayaran : <?php echo $row["Status_Pembayaran"]."<br>"; ?></p>
                         <p>Bukti Pembayaran : <img src="Pengguna/uploads/<?php echo $row["bukti_pembayaran"]?>" alt="" style="width:15%"></p>
 
                     </div>
                     <div class="buttonaction" style="margin-top:50px">
-                    <p><button id="btnAccept_index" style="padding:12px;">Accept</button></p>
-                    <p><button type="button" id="btnDecline" name="btnDecline" style="margin-top:0px" onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-red">Decline</button></p>
+                    <p><button type="submit" id="btnAccept_index" name="btnAcceptPesanan" style="padding:12px; <?php if(isset($_POST['btnAcceptPesanan'])) echo" color:red;"?>">Accept</button></p>
+                    <p><button type="button" id="btnDecline" name="btnDecline" style="margin-top:0px" onclick="document.getElementById('id01-<?=$row['ID_Pemesanan'] ?>').style.display='block'" class="w3-button w3-red">Decline</button></p>
                     </div>
                 </div>
 
-                <div id="id01" class="w3-modal">
+                <div id="id01-<?=$row["ID_Pemesanan"] ?>" class="w3-modal">
                     <div class="w3-modal-content">
                         <div class="w3-container">
-                            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                            <input type="text" id="IdPemesanan" name="IdPemesanan" value='<?php echo $row["ID_Pemesanan"]; ?>'>
+                            <span onclick="document.getElementById('id01-<?=$row['ID_Pemesanan'] ?>').style.display='none'" class="w3-button w3-display-topright">&times;</span>
                             <label for="">Masukkan Alasan Pembatalan (Required)</label> <br>
                             <textarea name="message" id="" cols="30" rows="10"></textarea> <br>
                             <button type="submit" name='batalkanPesanan'>Batalkan</button> <br> <br>

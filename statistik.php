@@ -1,3 +1,4 @@
+<?php include('Pengguna/server.php') ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,34 +40,96 @@
                 width: 20%;
                 margin-top: -6px;
                 float: right;" >Download as Excel</button>
-            </div>  
+            </div>
+            <form action="statistik.php" method="POST">
+            <?php
+                //kode untuk mencari total peminjam
+                $sql = "SELECT COUNT(*) as total FROM memesan";
+                $results = mysqli_query($db, $sql) or die( mysqli_error($db));
+                $data=mysqli_fetch_assoc($results);
+            ?>
             <div class="info">
                 <div class="date-picker">
-                    <input type="month" name="datepicker" id="datepicker">
+                <input type="month" name="bulan" id="datePicker" value="<?=date('Y-m')?>"> 
+                <button type="submit" name="generate">Generate Statistik</button><br> <br>
                 </div>
-            <h3 style="color: #0d7a6f;">Showing total pemesanan pasaga di bulan</h3>
-
+            <h3 style="color: #0d7a6f;">Showing total pemesanan pasaga di bulan <?php echo date("F", strtotime('m'));?></h3>
+            <?php
+                //kode untuk mencari total peminjam pada lapangan futsal A
+                if(isset($_POST['generate'])){
+                $month = $_POST['bulan'];
+                $queryFutsalA = "SELECT COUNT(*) as totalFA FROM memesan INNER JOIN fasilitas
+                ON memesan.ID_Fasilitas = fasilitas.ID_Fasilitas INNER JOIN anggota ON memesan.ID_Anggota = anggota.ID_Anggota
+                WHERE fasilitas.Nama_Fasilitas = 'Lapangan Futsal A' AND MONTH(memesan.Tanggal_Pemakaian) = $month AND YEAR(memesan.Tanggal_Pemakaian) = $month";
+                $res2 = mysqli_query($db, $queryFutsalA) or die( mysqli_error($db));
+                $data2=mysqli_fetch_assoc($res2);
+                }
+            ?>
             <div class="container">
                 <canvas id="chartArea" style="width: 1000px;height:400px;margin: 0 auto;"></canvas>
             </div>
             <script type="text/javascript" src="js/chart.js"></script>
 
-            <div class="rincian" id="rincian"></div>
-                <h4 id="Total-bulan-tsb">Total Peminjam di bulan xx : yy orang</h4>
+            <div class="rincian" id="rincian" style="margin-left:24px">
+                <h4 id="Total-bulan-tsb">Total Peminjam di bulan <?php echo date("F", strtotime('m'));?> : <?php echo $data['total']; ?> orang</h4>
                 <h5 style="color: #0d7a6f;">Detail Rincian</h5>
-                <h5>Lapangan Futsal A : xx orang</h5>
-                <h5>Lapangan Futsal B : xx orang</h5>
-                <h5>Lapangan Basket A : xx orang</h5>
-                <h5>Lapangan Basket B : xx orang</h5>
-                <h5>Lapangan Voli A : xx orang</h5>
-                <h5>Lapangan Voli B : xx orang</h5>
-                <h5>Lapangan Tennis A : xx orang</h5>
-                <h5>Lapangan Tennis B : xx orang</h5>
-                <h5>Lapangan Wall Climbing : xx orang</h5>
+                <h5>Lapangan Futsal A : <?php echo $data2['totalFA'] ?> orang</h5>
+                <h5>Lapangan Futsal B : <?php echo $data2['totalFA'] ?> orang</h5>
+                <h5>Lapangan Basket A : 0 orang</h5>
+                <h5>Lapangan Basket B : 0 orang</h5>
+                <h5>Lapangan Voli A : 0 orang</h5>
+                <h5>Lapangan Voli B : 0 orang</h5>
+                <h5>Lapangan Tennis A : 0 orang</h5>
+                <h5>Lapangan Tennis B : 0 orang</h5>
+                <h5>Lapangan Wall Climbing : 0 orang</h5>
             </div>
           </div>
         </div>
+        </form>
+
+        <?php
+            $namaFasilitas = mysqli_query($db, "SELECT Nama_Fasilitas FROM fasilitas");
+            $jumlahPeminjam = mysqli_query($db, "SELECT COUNT(*) as jumlah FROM memesan INNER JOIN fasilitas
+            ON memesan.ID_Fasilitas = fasilitas.ID_Fasilitas INNER JOIN anggota ON memesan.ID_Anggota = anggota.ID_Anggota WHERE fasilitas.Nama_Fasilitas = 'Lapangan Futsal A'");
+
+
+            $jumlahPeminjamBasketA = mysqli_query($db, "SELECT COUNT(*) as jumlah FROM memesan INNER JOIN fasilitas
+            ON memesan.ID_Fasilitas = fasilitas.ID_Fasilitas INNER JOIN anggota ON memesan.ID_Anggota = anggota.ID_Anggota WHERE fasilitas.Nama_Fasilitas = 'Lapangan Basket A'");
+        ?>
+        <script>
+            var ctx = document.getElementById('chartArea').getContext('2d');
+            var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: [<?php while($row = mysqli_fetch_array($namaFasilitas)) {echo '"'.$row['Nama_Fasilitas']. '",';} ?>],
+                        datasets: [{
+                            label: 'Jumlah Peminjam',
+                            data: [<?php while($row = mysqli_fetch_array($jumlahPeminjam)) {echo '"'.$row['jumlah']. '",';} ?> , <?php while($row = mysqli_fetch_array($jumlahPeminjamBasketA)) {echo '"'.$row['jumlah']. '",';} ?>],
+                            backgroundColor: [
+                                '#BFB133' , '#BFB133' , '#BFB133' , '#BFB133' , '#BFB133'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        title: {
+                            display: true,
+                            text: 'Statistik Jumlah Pemesan Fasilitas Pasaga per Bulan'
+                        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+        </script>
 </body>
+
 
 </html>
 

@@ -80,7 +80,7 @@ input[type="file"] {
         &nbsp;
     </div>
 
-    <h3>My Booking</h3>
+    <h3 style="margin-left:42px">My Booking</h3>
 
     <?php
         $sql = "SELECT * FROM memesan INNER JOIN fasilitas
@@ -91,33 +91,34 @@ input[type="file"] {
                 while($row = mysqli_fetch_array($results))
                 {
                     ?>
-                <form action="myBooking.php" method="post" enctype="multipart/form-data">
+                
                 <div class="card-style">
-                    <div class="card" style="height:300px">
+                    <div class="card" style="height:350px;float:left">
                     <img src="../Image/futsal.jpg" alt="Lap Futsal" style="width:40%; float: left;">
             
                     <div class="namaFasilitas">
                         <h3 style="color: #0d7a6f;"> <?php echo $row["Nama_Fasilitas"]."<br>"; ?> </h3>
                     </div>
 
-                    <div class="detail-peminjam" style="">
-                        <input type="hidden" id="IdPemesanan" name="IdPemesanan" value='<?php echo $row["ID_Pemesanan"]; ?>'>
-                        <p style="margin-bottom: 8px;margin-left:24px;color: #0a2724;">Booking untuk Tanggal: <?php echo $row["Tanggal_Transaksi"]."<br>"; ?> </p>
+                    <div class="detail-peminjam" style="width:30%;float:left">
+                        <p style="margin-bottom: 8px;margin-left:24px;color: #0a2724;">Booking untuk Tanggal: <?php echo $row["Tanggal_Pemakaian"]."<br>"; ?> </p>
                         <p style="margin-bottom: 8px;margin-left:-24px;color: #0a2724;">Status Pemesanan: <?php echo $row["Status_Pemesanan"]."<br>"; ?> </p>
                         <p style="margin-bottom: 8px;margin-left:-20px;color: #0a2724;">Status Pembayaran: <?php echo $row["Status_Pembayaran"]."<br>"; ?> </p>
                         <p style="margin-bottom: 8px;margin-left:-80px;color: #0a2724;">Bukti Pembayaran :</p>
                         <img src="uploads/<?php echo $row["bukti_pembayaran"]?>" alt="" style="width:15%">
                     </div>
 
-                    <div class="btnAction" style="margin-top:15%">
-                        <button type="button" style="margin-right: 16px" id="btnBatal" onclick="document.getElementById('modalBatalkan').style.display='block'" class="w3-button w3-red">Batalkan</button>
-                        <button type="button" id="btnKonfirmasi" onclick="document.getElementById('modalKonfirmasi').style.display='block'" class="w3-button w3-flat-turquoise">Konfirmasi Pembayaran</button>
+                    <div class="btnAction" style="width:30%">
+                        <button type="button" style="margin-right: 16px" id="btnBatal" onclick="document.getElementById('modalBatalkan-<?=$row['ID_Pemesanan'] ?>').style.display='block'" class="w3-button w3-red">Batalkan</button>
+                        <button type="button" id="btnKonfirmasi" onclick="document.getElementById('modalKonfirmasi-<?=$row['ID_Pemesanan'] ?>').style.display='block'" class="w3-button w3-flat-turquoise">Konfirmasi Pembayaran</button>
                     </div>
                     </div>
-                    <div id="modalBatalkan" class="w3-modal">
+                    <form action="myBooking.php" method="post" enctype="multipart/form-data">
+                    <div id="modalBatalkan-<?=$row["ID_Pemesanan"] ?>" class="w3-modal">
                         <div class="w3-modal-content">
                             <div class="w3-container">
-                                <span onclick="document.getElementById('modalBatalkan').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                            <input type="hidden" name="IdPemesanan" value='<?php echo $row["ID_Pemesanan"]; ?>'>
+                                <span onclick="document.getElementById('modalBatalkan-<?=$row['ID_Pemesanan'] ?>').style.display='none'" class="w3-button w3-display-topright">&times;</span>
                                 <h2>Konfirmasi pembatalan</h2>
                                 <p style="color:black">Apakah anda yakin ingin membatalkan pemesanan?</p>
                                 <button type="submit" class="btnDelete" name='btnDeletePesanan' value='send' style="background-color: #c03131;cursor:pointer;
@@ -125,11 +126,15 @@ input[type="file"] {
                            </div>
                         </div>
                     </div>
+                    </form>
 
-                    <div id="modalKonfirmasi" class="w3-modal">
+                    <form action="myBooking.php" method="post" enctype="multipart/form-data">
+                    
+                    <div id="modalKonfirmasi-<?=$row["ID_Pemesanan"] ?>" class="w3-modal">
                         <div class="w3-modal-content">
                             <div class="w3-container">
-                                <span onclick="document.getElementById('modalKonfirmasi').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                                <input type="hidden" id="IdPemesanan" name="IdPemesanan" value='<?php echo $row["ID_Pemesanan"]; ?>'>
+                                <span onclick="document.getElementById('modalKonfirmasi-<?=$row['ID_Pemesanan'] ?>').style.display='none'" class="w3-button w3-display-topright">&times;</span>
                                 <h2>Konfirmasi Pembayaran</h2>
                                 <p style="color:black">Bukti Pembayaran akan di proses maksimal 1x24 jam setelah upload. Anda akan menerima email jika pembayaran sudah diterima.</p>
                                 <label class="new-button" for="upload"> Upload Bukti Pembayaran <br>
@@ -138,14 +143,14 @@ input[type="file"] {
                            </div>
                         </div>
                     </div>
-            </form>
+                    </form>
                 </div>
                 
                 <?php
                 }
             }
             else{
-                echo "No booking found";
+                echo "<h4 style='margin-left:40%;color:#c03131'> No booking found, Book a court now! </h4>";
             }
 
             ?>

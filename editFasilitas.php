@@ -1,3 +1,4 @@
+<?php include('Pengguna/server.php') ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +9,48 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/style-editFasilitas.css">
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+    <style>
+        .btn-1 {
+            font-family: Hack, monospace;
+            background: #0D7A6F;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 20px;
+            margin-left: 16px;
+            padding: 1rem;
+            border: 0;
+            transition: all 0.5s;
+            border-radius: 10px;
+            width: auto;
+            position: relative;
+        }
+            .btn-1::after {
+                content: '\21f0';
+                font-family: "Font Awesome 5 Pro";
+                font-weight: 400;
+                position: absolute;
+                left: 80%;
+                top: 31%;
+                right: 5%;
+                bottom: 0;
+                opacity: 0;
+            }
+
+            .btn-1:hover {
+                background: #0D7A6F;
+                transition: all 0.5s;
+                border-radius: 10px;
+                box-shadow: 0px 6px 15px #0000ff61;
+                padding: 1.5rem 3.5rem 1.5rem 1.5rem;
+            }
+            .btn-1::after {
+                opacity: 1;
+                transition: all 0.5s;
+            }
+        }
+    }
+    </style>
 </head>
 <body>
     <div class="wrapper">
@@ -80,8 +123,8 @@
         <div class="date-picker">
             <input type="date" name="datepicker" id="datepicker" style="margin-left: 18px;">
         </div>
-        <hr style="width: 90%; text-align: left; margin-left: 18px; border-color: honeydew; margin-top: 24px;">
-
+        <hr style="width: 90%; text-align: left; margin-left: 18px; border-color: honeydew; margin-top: 24px;"> <br>
+        <button type="submit" class="btn-1">Save</button> <br>
     </div>
 
     <script>

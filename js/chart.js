@@ -5,7 +5,7 @@ var myChart = new Chart(ctx, {
         labels: ['L.Futsal', 'L.Basket', 'L.Voli', 'L.Tennis', 'L.Wall Climbing'],
         datasets: [{
             label: 'Jumlah Peminjam',
-            data: [12, 20, 8, 10, 5],
+            data: [12, 10, 8, 10, 5],
             backgroundColor: [
                 '#BFB133' , '#BFB133' , '#BFB133' , '#BFB133' , '#BFB133'
             ],

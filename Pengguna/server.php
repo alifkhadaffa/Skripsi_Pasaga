@@ -114,7 +114,7 @@ if (isset($_POST['btnConfirm'])) {
     $tanggal = mysqli_real_escape_string($db , $_POST['tanggal-pilihan']);
     $final_tanggal = date('Y-m-d' , strtotime($tanggal));
     $jam = time();
-    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Transaksi, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan)
+    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan)
     VALUES ('{$_SESSION['id']}','1' , '$final_tanggal' , 'Pending' , 'Pending', NOW())";
     $res = mysqli_query($db, $query);
 
@@ -150,13 +150,13 @@ if(isset($_POST['btnEdit'])){
 //Batalkan pesanan dari user
 if(isset($_POST['btnDeletePesanan'])){
     $idPemesanan = $_POST['IdPemesanan'];
-    $queryDelete = "DELETE FROM memesan WHERE ID_Pemesanan = $idPemesanan AND ID_Anggota = '{$_SESSION['id']}' ";
+    $queryDelete = "DELETE FROM memesan WHERE ID_Pemesanan = $idPemesanan AND ID_Anggota = $_SESSION[id] ";
     $res = mysqli_query($db,$queryDelete);
 }
 
 //Batalkan pesanan dari admin
 if(isset($_POST['batalkanPesanan'])){
-    $idPemesanan = $_POST['idPemesanan'];
+    $idPemesanan = $_POST['IdPemesanan'];
     $queryDelete = "DELETE FROM memesan WHERE ID_Pemesanan = $idPemesanan";
     $res = mysqli_query($db,$queryDelete);
 }
@@ -202,5 +202,14 @@ if(isset($_POST['btnUpload'])){
     else{
         echo "Extension file tidak diperbolehkan (input file JPG, JPEG, PNG, atau PDF only)";
     }
+}
+
+//Accept Pesanan oleh Admin (Update status pemesanan dan pembayaran)
+if(isset($_POST['btnAcceptPesanan'])){
+    $idPemesanan = $_POST['IdPemesanan'];
+    $sql = "UPDATE memesan SET Status_Pembayaran = 'Pembayaran diterima' , Status_Pemesanan = 'Booking diterima' WHERE ID_Pemesanan = '$idPemesanan'";
+    mysqli_query($db , $sql);
+    $_SESSION["accept_booking"] = "yes";
+    header("Location: index.php?acceptBookingBerhasil");
 }
 ?>
