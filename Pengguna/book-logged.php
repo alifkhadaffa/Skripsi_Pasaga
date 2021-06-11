@@ -82,13 +82,6 @@
             <h4 style="font-weight: lighter;">Mari berolahraga di Pasaga Unpar dan rasakan pengalaman<br>berolahraga yang menyenangkan</h4>
         </div>
 
-        <div class="search-container">
-            <form action="/action_page.php">
-              <input type="text" placeholder="Cari Lapangan" name="search">
-              <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
-
         <a href="detail-futsal-book-logged.php" class="card-link">
         <div class="card">
             <img src="../Image/futsal.jpg" alt="Lap Futsal" style="width:100%">
@@ -102,11 +95,13 @@
                 </p>
                 <div class="iconCard">
                 <p style="color:#0d7a6f;">Jam operasional <i class="fa fa-clock-o" style="color: #0d7a6f;"></i> : 06.00 - 21.00 WIB</p>
-                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp40.000 - Rp100.000 </p>
+                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp66.000 - Rp163.000 (*per jam) </p>
                 </div>
             </div>
           </div>
         </a>
+
+        <a href="detail-futsalB-book-logged.php" class="card-link">
           <div class="card">
             <img src="../Image/futsalB.jpg" alt="Lap Futsal" style="width:100%">
             
@@ -119,11 +114,13 @@
                 </p>
                 <div class="iconCard">
                 <p style="color:#0d7a6f;">Jam operasional <i class="fa fa-clock-o" style="color: #0d7a6f;"></i> : 06.00 - 21.00 WIB</p>
-                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp40.000 - Rp100.000 </p>
+                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp79.000 - Rp193.000 (*per jam) </p>
                 </div>
             </div>
           </div>
+        </a>
 
+        <a href="detail-basketA-book-logged.php" class="card-link">
           <div class="card">
             <img src="../Image/basket.jpg" alt="Lap Futsal" style="width:100%">
             
@@ -136,10 +133,12 @@
                 </p>
                 <div class="iconCard">
                 <p style="color:#0d7a6f;">Jam operasional <i class="fa fa-clock-o" style="color: #0d7a6f;"></i> : 06.00 - 21.00 WIB</p>
-                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp40.000 - Rp100.000 </p>
+                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp79.000 - Rp193.000 (*per jam) </p>
                 </div>
             </div>
           </div>
+        </a>
+
 
           <div class="card">
             <img src="../Image/basketB.jpg" alt="Lap Futsal" style="width:100%">
@@ -153,7 +152,7 @@
                 </p>
                 <div class="iconCard">
                 <p style="color:#0d7a6f; margin-top: 16px;">Jam operasional <i class="fa fa-clock-o" style="color: #0d7a6f;"></i> : 06.00 - 21.00 WIB</p>
-                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp40.000 - Rp100.000 </p>
+                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp79.000 - Rp193.000 (*per jam) </p>
                 </div>
             </div>
           </div>
@@ -170,7 +169,7 @@
                 </p>
                 <div class="iconCard">
                 <p style="color:#0d7a6f; margin-top: 16px;">Jam operasional <i class="fa fa-clock-o" style="color: #0d7a6f;"></i> : 06.00 - 21.00 WIB</p>
-                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp40.000 - Rp100.000 </p>
+                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp30.000 - Rp104.000 (*per jam) </p>
                 </div>
             </div>
           </div>
@@ -187,7 +186,7 @@
                 </p>
                 <div class="iconCard">
                 <p style="color:#0d7a6f; margin-top: 16px;">Jam operasional <i class="fa fa-clock-o" style="color: #0d7a6f;"></i> : 06.00 - 21.00 WIB</p>
-                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp40.000 - Rp100.000 </p>
+                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp79.000 - Rp193.000 (*per jam) </p>
                 </div>
             </div>
           </div>
@@ -204,7 +203,7 @@
                 </p>
                 <div class="iconCard">
                 <p style="color:#0d7a6f; margin-top: 16px;">Jam operasional <i class="fa fa-clock-o" style="color: #0d7a6f;"></i> : 06.00 - 21.00 WIB</p>
-                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp40.000 - Rp100.000 </p>
+                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp79.000 - Rp193.000 (*per jam) </p>
                 </div>
             </div>
           </div>
@@ -220,8 +219,8 @@
                 <p style="margin-bottom: 8px;color: #0a2724;">Wall Climbing diperuntukan untuk olahraga maupun latihan panjat tebing dan sudah berstandar internasional.
                 </p>
                 <div class="iconCard">
-                <p style="color:#0d7a6f; margin-top: 16px;">Jam operasional <i class="fa fa-clock-o" style="color: #0d7a6f;"></i> : 06.00 - 21.00 WIB</p>
-                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp40.000 - Rp100.000 </p>
+                <p style="color:#0d7a6f; margin-top: 16px;">Jam operasional <i class="fa fa-clock-o" style="color: #0d7a6f;"></i> : 06.00 - 18.00 WIB</p>
+                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp73.000 (*per jam) </p>
                 </div>
             </div>
           </div>

@@ -63,7 +63,7 @@
 
                         <p>Nama Peminjam : <?php echo $row["Nama"]."<br>"; ?></p>
                         <p>Email Peminjam : <?php echo $row["Email"]."<br>"; ?></p>
-                        <p>Durasi Peminjam : 2 Jam , 14:00 - 16:00</p>
+                        <p>Durasi Peminjam : <?php echo $row["Jam_Awal_Pemakaian"]." - ".$row["Jam_Selesai_Pemakaian"]."<br>"; ?></p>
                         <p>Booking untuk tanggal : <?php echo $row["Tanggal_Pemakaian"]."<br>"; ?></p>
                         <p>Status Pembayaran : <?php echo $row["Status_Pembayaran"]."<br>"; ?></p>
                         <p>Bukti Pembayaran : <img src="Pengguna/uploads/<?php echo $row["bukti_pembayaran"]?>" alt="" style="width:15%"></p>
@@ -78,7 +78,7 @@
                 <div id="id01-<?=$row["ID_Pemesanan"] ?>" class="w3-modal">
                     <div class="w3-modal-content">
                         <div class="w3-container">
-                            <input type="text" id="IdPemesanan" name="IdPemesanan" value='<?php echo $row["ID_Pemesanan"]; ?>'>
+                            <input type="hidden" id="IdPemesanan" name="IdPemesanan" value='<?php echo $row["ID_Pemesanan"]; ?>'>
                             <span onclick="document.getElementById('id01-<?=$row['ID_Pemesanan'] ?>').style.display='none'" class="w3-button w3-display-topright">&times;</span>
                             <label for="">Masukkan Alasan Pembatalan (Required)</label> <br>
                             <textarea name="message" id="" cols="30" rows="10"></textarea> <br>

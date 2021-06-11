@@ -1,4 +1,4 @@
-<?php include('Pengguna/server.php') ?>
+<?php include('../Pengguna/server.php') ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Fasilitas</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/style-editFasilitas.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-editFasilitas.css">
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 
     <style>
@@ -57,10 +57,10 @@
         <div class="sidebar">
             <h2>Pasaga Admin</h2>
             <ul>
-                <li><a href="index.php" class="active"><i class="fas fa-file-alt" aria-hidden="true"></i>Pemesanan</a></li>
-                <li><a href="statistik.php"><i class="fas fa-chart-bar"></i>Statistik</a></li>
-                <li><a href="kelola.php" style="text-decoration: underline;"><i class="fas fa-volleyball-ball"></i>Kelola Fasilitas</a></li>
-                <li><a href="verifikasi.php"><i class="fas fa-user"></i>Verifikasi Anggota</a></li>
+                <li><a href="../index.php" class="active"><i class="fas fa-file-alt" aria-hidden="true"></i>Pemesanan</a></li>
+                <li><a href="../statistik.php"><i class="fas fa-chart-bar"></i>Statistik</a></li>
+                <li><a href="../kelola.php" style="text-decoration: underline;"><i class="fas fa-volleyball-ball"></i>Kelola Fasilitas</a></li>
+                <li><a href="../verifikasi.php"><i class="fas fa-user"></i>Verifikasi Anggota</a></li>
             </ul> 
             <div class="social_media">
               <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -69,62 +69,65 @@
           </div>
         </div>
 
+    
     <div class="main_content">
+    <?php
+        $sql = "SELECT * FROM fasilitas WHERE ID_Fasilitas = '2'";
+        $results = mysqli_query($db, $sql) or die( mysqli_error($db));
+        $row = mysqli_fetch_array($results)
+    ?>
             <div class="header">Kelola Fasilitas</div>  
-
+            <form action="editFasilitas_futsalB.php" method="post" enctype="multipart/form-data">
             <div class="info">
-                <div class="wrapper-edit">
                 <div class="img">
-                    <img src="">
+                    <img src="../uploads/<?php echo $row["foto_fasilitas"]?>" style="width:20%">
                 </div>
-                <div class="content">
-                    <div class="icon"><i class="fas fa-camera"></i></div>
-                    <div class="text">No file chosen yet!</div>
-                    <div id="cancel-btn"><i class="fas fa-times"></i></div>
-                    <div class="file-name">File name here</div>
-                </div>
-            </div>
             <div class="content2">
-                <input id="default-btn" type="file" hidden>
-                <button onclick = "defaultBtnActive()"  id="custom-btn">Choose File</button>
+            <input type="file" name="fileFotoFasilitas">
             </div>   
         </div>
 
+        
         <hr style="width: 90%; text-align: left; margin-left: 18px; border-color: honeydew;">
-
+        
             <h4>Nama Fasilitas*</h4>
-            <input type="input" class="form__field" placeholder="Lapangan Futsal A" name="name" id='name' required />
+            <input type="input" class="form__field" value="<?php echo $row["Nama_Fasilitas"]; ?>" name="namaFasilitas" id='name' required />
             <hr style="width: 90%; text-align: left; margin-left: 18px; border-color: honeydew; margin-top: 24px;">
 
         <h4>Deskripsi Fasilitas*</h4>
-        <input type="input" class="form__field" placeholder="Lapangan Futsal A adalah lapangan ..." name="name" id='name' required />
+        <input type="textar" class="form__field" value="<?php echo $row["Deskripsi"]; ?>" name="DeskripsiFas" id='name' required />
         <hr style="width: 90%; text-align: left; margin-left: 18px; border-color: honeydew; margin-top: 24px;">
 
-        <h4>Harga Fasilitas*</h4>
+        <h4>Harga Fasilitas* (Semua harga dalam rupiah)</h4>
         <div class="harga">
-        <h6>Weekdays</h6>
-        <input type="input" class="form__fieldHarga" placeholder="Rp80.000" name="harga" id='harga' required />
-
-        <h6>Jumat</h6>
-        <input type="input" class="form__fieldHarga" placeholder="Rp80.000" name="harga" id='harga' required />
-
-        <h6>Weekend</h6>
-        <input type="input" class="form__fieldHarga" placeholder="Rp80.000" name="harga" id='harga' required />
-</div>
+        <h6>Weekdays 06.00 - 14.00</h6>
+        <input type="input" class="form__fieldHarga" value="<?php echo $row["Tarif_Per_Jam(Weekday 06.00-14.00)"]; ?>" name="hargaday6" id='harga' required />
+        <h6>Weekdays 14.00 - 17.00</h6>
+        <input type="input" class="form__fieldHarga" value="<?php echo $row["Tarif_Per_Jam(Weekday 14.00-17.00)"]; ?>" name="hargaday14" id='harga' required />
+        <h6>Weekdays 17.00 - 21.00</h6>
+        <input type="input" class="form__fieldHarga" value="<?php echo $row["Tarif_Per_Jam(Weekday 17.00-21.00)"]; ?>" name="hargaday17" id='harga' required />
         <hr style="width: 90%; text-align: left; margin-left: 18px; border-color: honeydew; margin-top: 24px;">
 
-        <h4>Maintanance Date</h4>
-        <h6>Dari</h6>
-        <div class="date-picker">
-            <input type="date" name="datepicker" id="datepicker" style="margin-left: 18px;">
+        <h6>Jumat 06.00 - 14.00</h6>
+        <input type="input" class="form__fieldHarga" value="<?php echo $row["Tarif_Per_Jam(Jumat 06.00-14.00)"]; ?>" name="hargajum6" id='harga' required />
+        <h6>Jumat 14.00 - 17.00</h6>
+        <input type="input" class="form__fieldHarga" value="<?php echo $row["Tarif_Per_Jam(Jumat 14.00-17.00)"]; ?>" name="hargajum14" id='harga' required />
+        <h6>Jumat 17.00 - 21.00</h6>
+        <input type="input" class="form__fieldHarga" value="<?php echo $row["Tarif_Per_Jam(Jumat 17.00-21.00)"]; ?>" name="hargajum17" id='harga' required />
+        <hr style="width: 90%; text-align: left; margin-left: 18px; border-color: honeydew; margin-top: 24px;">
+
+        <h6>Weekend 06.00 - 14.00</h6>
+        <input type="input" class="form__fieldHarga" value="<?php echo $row["Tarif_Per_Jam(Weekend 06.00-14.00)"]; ?>" name="hargaend6" id='harga' required />
+        <h6>Weekend 14.00 - 17.00</h6>
+        <input type="input" class="form__fieldHarga" value="<?php echo $row["Tarif_Per_Jam(Weekend 14.00-17.00)"]; ?>" name="hargaend14" id='harga' required />
+        <h6>Weekend 17.00 - 21.00</h6>
+        <input type="input" class="form__fieldHarga" value="<?php echo $row["Tarif_Per_Jam(Weekend 17.00-21.00)"]; ?>" name="hargaend17" id='harga' required />
         </div>
 
-        <h6>Sampai</h6>
-        <div class="date-picker">
-            <input type="date" name="datepicker" id="datepicker" style="margin-left: 18px;">
-        </div>
-        <hr style="width: 90%; text-align: left; margin-left: 18px; border-color: honeydew; margin-top: 24px;"> <br>
-        <button type="submit" class="btn-1">Save</button> <br>
+        <hr style="width: 90%; text-align: left; margin-left: 18px; border-color: honeydew; margin-top: 24px;">
+
+        <button type="submit" class="btn-1" name="saveEditFutsalB">Save</button> <br>
+        </form>
     </div>
 
     <script>

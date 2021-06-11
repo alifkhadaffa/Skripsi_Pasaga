@@ -94,7 +94,7 @@ input[type="file"] {
                 
                 <div class="card-style">
                     <div class="card" style="height:350px;float:left">
-                    <img src="../Image/futsal.jpg" alt="Lap Futsal" style="width:40%; float: left;">
+                    <img src="../Image/illus-myBook.png" alt="Lap Futsal" style="width:25%; float: left;">
             
                     <div class="namaFasilitas">
                         <h3 style="color: #0d7a6f;"> <?php echo $row["Nama_Fasilitas"]."<br>"; ?> </h3>

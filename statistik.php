@@ -44,13 +44,35 @@
             <form action="statistik.php" method="POST">
             <?php
                 //kode untuk mencari total peminjam
-                $sql = "SELECT COUNT(*) as total FROM memesan";
+                if(isset($_POST['generate'])){
+                $month = $_POST['bulan'];
+                $year = $_POST['tahun'];
+                $sql = "SELECT COUNT(*) as total FROM memesan WHERE Status_Pemesanan = 'Booking diterima' AND MONTH(Tanggal_Pemakaian) = '$month'
+                AND YEAR(Tanggal_Pemakaian) = '$year'";
                 $results = mysqli_query($db, $sql) or die( mysqli_error($db));
                 $data=mysqli_fetch_assoc($results);
+                }
             ?>
             <div class="info">
                 <div class="date-picker">
-                <input type="month" name="bulan" id="datePicker" value="<?=date('Y-m')?>"> 
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                <select id="year" name="tahun">
+                <option value="2021">2021</option>
+                </select>
+                <select id="month" name="bulan">
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+                </select>
                 <button type="submit" name="generate">Generate Statistik</button><br> <br>
                 </div>
             <h3 style="color: #0d7a6f;">Showing total pemesanan pasaga di bulan <?php echo date("F", strtotime('m'));?></h3>
@@ -58,24 +80,54 @@
                 //kode untuk mencari total peminjam pada lapangan futsal A
                 if(isset($_POST['generate'])){
                 $month = $_POST['bulan'];
+                $year = $_POST['tahun'];
                 $queryFutsalA = "SELECT COUNT(*) as totalFA FROM memesan INNER JOIN fasilitas
                 ON memesan.ID_Fasilitas = fasilitas.ID_Fasilitas INNER JOIN anggota ON memesan.ID_Anggota = anggota.ID_Anggota
-                WHERE fasilitas.Nama_Fasilitas = 'Lapangan Futsal A' AND MONTH(memesan.Tanggal_Pemakaian) = $month AND YEAR(memesan.Tanggal_Pemakaian) = $month";
+                WHERE fasilitas.Nama_Fasilitas = 'Lapangan Futsal A' AND MONTH(memesan.Tanggal_Pemakaian) = $month AND YEAR(memesan.Tanggal_Pemakaian) = $year
+                AND Status_Pemesanan = 'Booking diterima'";
                 $res2 = mysqli_query($db, $queryFutsalA) or die( mysqli_error($db));
                 $data2=mysqli_fetch_assoc($res2);
                 }
             ?>
+
+            <?php
+                //kode untuk mencari total peminjam pada lapangan futsal B
+                if(isset($_POST['generate'])){
+                $month = $_POST['bulan'];
+                $year = $_POST['tahun'];
+                $queryFutsalB = "SELECT COUNT(*) as totalFA FROM memesan INNER JOIN fasilitas
+                ON memesan.ID_Fasilitas = fasilitas.ID_Fasilitas INNER JOIN anggota ON memesan.ID_Anggota = anggota.ID_Anggota
+                WHERE fasilitas.Nama_Fasilitas = 'Lapangan Futsal B' AND MONTH(memesan.Tanggal_Pemakaian) = $month AND YEAR(memesan.Tanggal_Pemakaian) = $year
+                AND Status_Pemesanan = 'Booking diterima'";
+                $res2 = mysqli_query($db, $queryFutsalB) or die( mysqli_error($db));
+                $data3=mysqli_fetch_assoc($res2);
+                }
+            ?>
+
+            <?php
+                //kode untuk mencari total peminjam pada lapangan Basket A
+                if(isset($_POST['generate'])){
+                $month = $_POST['bulan'];
+                $year = $_POST['tahun'];
+                $queryBasketA = "SELECT COUNT(*) as totalFA FROM memesan INNER JOIN fasilitas
+                ON memesan.ID_Fasilitas = fasilitas.ID_Fasilitas INNER JOIN anggota ON memesan.ID_Anggota = anggota.ID_Anggota
+                WHERE fasilitas.Nama_Fasilitas = 'Lapangan Basket A' AND MONTH(memesan.Tanggal_Pemakaian) = $month AND YEAR(memesan.Tanggal_Pemakaian) = $year
+                AND Status_Pemesanan = 'Booking diterima'";
+                $res2 = mysqli_query($db, $queryBasketA) or die( mysqli_error($db));
+                $data4=mysqli_fetch_assoc($res2);
+                }
+            ?>
+
             <div class="container">
                 <canvas id="chartArea" style="width: 1000px;height:400px;margin: 0 auto;"></canvas>
             </div>
-            <script type="text/javascript" src="js/chart.js"></script>
 
             <div class="rincian" id="rincian" style="margin-left:24px">
-                <h4 id="Total-bulan-tsb">Total Peminjam di bulan <?php echo date("F", strtotime('m'));?> : <?php echo $data['total']; ?> orang</h4>
+                <h4 id="Total-bulan-tsb">Total Peminjam di bulan <?php echo $month?> : <?php echo $data['total']; ?> orang</h4>
                 <h5 style="color: #0d7a6f;">Detail Rincian</h5>
                 <h5>Lapangan Futsal A : <?php echo $data2['totalFA'] ?> orang</h5>
-                <h5>Lapangan Futsal B : <?php echo $data2['totalFA'] ?> orang</h5>
-                <h5>Lapangan Basket A : 0 orang</h5>
+                <h5>Lapangan Futsal B : <?php echo $data3['totalFA'] ?> orang</h5>
+                <h5>Lapangan Basket A : <?php echo $data4['totalFA'] ?> orang</h5>
                 <h5>Lapangan Basket B : 0 orang</h5>
                 <h5>Lapangan Voli A : 0 orang</h5>
                 <h5>Lapangan Voli B : 0 orang</h5>
@@ -88,13 +140,24 @@
         </form>
 
         <?php
+            $month = $_POST['bulan'];
+            $year = $_POST['tahun'];
             $namaFasilitas = mysqli_query($db, "SELECT Nama_Fasilitas FROM fasilitas");
             $jumlahPeminjam = mysqli_query($db, "SELECT COUNT(*) as jumlah FROM memesan INNER JOIN fasilitas
-            ON memesan.ID_Fasilitas = fasilitas.ID_Fasilitas INNER JOIN anggota ON memesan.ID_Anggota = anggota.ID_Anggota WHERE fasilitas.Nama_Fasilitas = 'Lapangan Futsal A'");
+            ON memesan.ID_Fasilitas = fasilitas.ID_Fasilitas INNER JOIN anggota ON memesan.ID_Anggota = anggota.ID_Anggota WHERE fasilitas.Nama_Fasilitas = 'Lapangan Futsal A'
+            AND MONTH(memesan.Tanggal_Pemakaian) = $month AND YEAR(memesan.Tanggal_Pemakaian) = $year AND Status_Pemesanan = 'Booking diterima'");
 
+            $jumlahPeminjamFutsalB = mysqli_query($db, "SELECT COUNT(*) as jumlah FROM memesan INNER JOIN fasilitas
+            ON memesan.ID_Fasilitas = fasilitas.ID_Fasilitas INNER JOIN anggota ON memesan.ID_Anggota = anggota.ID_Anggota WHERE fasilitas.Nama_Fasilitas = 'Lapangan Futsal B'
+            AND MONTH(memesan.Tanggal_Pemakaian) = $month AND YEAR(memesan.Tanggal_Pemakaian) = $year AND Status_Pemesanan = 'Booking diterima'");
 
             $jumlahPeminjamBasketA = mysqli_query($db, "SELECT COUNT(*) as jumlah FROM memesan INNER JOIN fasilitas
-            ON memesan.ID_Fasilitas = fasilitas.ID_Fasilitas INNER JOIN anggota ON memesan.ID_Anggota = anggota.ID_Anggota WHERE fasilitas.Nama_Fasilitas = 'Lapangan Basket A'");
+            ON memesan.ID_Fasilitas = fasilitas.ID_Fasilitas INNER JOIN anggota ON memesan.ID_Anggota = anggota.ID_Anggota WHERE fasilitas.Nama_Fasilitas = 'Lapangan Basket A'
+            AND MONTH(memesan.Tanggal_Pemakaian) = $month AND YEAR(memesan.Tanggal_Pemakaian) = $year AND Status_Pemesanan = 'Booking diterima'");
+
+            $jumlahPeminjamBasketB = mysqli_query($db, "SELECT COUNT(*) as jumlah FROM memesan INNER JOIN fasilitas
+            ON memesan.ID_Fasilitas = fasilitas.ID_Fasilitas INNER JOIN anggota ON memesan.ID_Anggota = anggota.ID_Anggota WHERE fasilitas.Nama_Fasilitas = 'Lapangan Basket B'
+            AND MONTH(memesan.Tanggal_Pemakaian) = $month AND YEAR(memesan.Tanggal_Pemakaian) = $year AND Status_Pemesanan = 'Booking diterima'");
         ?>
         <script>
             var ctx = document.getElementById('chartArea').getContext('2d');
@@ -104,7 +167,8 @@
                         labels: [<?php while($row = mysqli_fetch_array($namaFasilitas)) {echo '"'.$row['Nama_Fasilitas']. '",';} ?>],
                         datasets: [{
                             label: 'Jumlah Peminjam',
-                            data: [<?php while($row = mysqli_fetch_array($jumlahPeminjam)) {echo '"'.$row['jumlah']. '",';} ?> , <?php while($row = mysqli_fetch_array($jumlahPeminjamBasketA)) {echo '"'.$row['jumlah']. '",';} ?>],
+                            data: [<?php while($row = mysqli_fetch_array($jumlahPeminjam)) {echo '"'.$row['jumlah']. '",';} ?> , <?php while($row = mysqli_fetch_array($jumlahPeminjamFutsalB)) {echo '"'.$row['jumlah']. '",';} ?>
+                            , <?php while($row = mysqli_fetch_array($jumlahPeminjamBasketA)) {echo '"'.$row['jumlah']. '",';} ?> , <?php while($row = mysqli_fetch_array($jumlahPeminjamBasketB)) {echo '"'.$row['jumlah']. '",';} ?>],
                             backgroundColor: [
                                 '#BFB133' , '#BFB133' , '#BFB133' , '#BFB133' , '#BFB133'
                             ],
@@ -128,6 +192,7 @@
 });
 
         </script>
+
 </body>
 
 
