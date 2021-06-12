@@ -1,4 +1,4 @@
-<?php include('server.php') ?>
+<?php include('../server.php') ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +33,7 @@
         .header-photo{
             width: 80%;
             height: 600px;
-            background: url(../Image/futsal.jpg);
+            background: url(../../Image/basketB.jpg);
             background-size: cover;
             margin : 0 auto;
             text-align: center;
@@ -172,28 +172,30 @@
 </head>
 <body>
     <div class="top-content"></div>
-        <a href="book-logged.php"><i class="fa fa-arrow-left" aria-hidden="true" style="color: #0d7a6f; font-size: 24px;"></i></a>
-        <h1>Lapangan Futsal A</h1>
+        <a href="../book-logged.php"><i class="fa fa-arrow-left" aria-hidden="true" style="color: #0d7a6f; font-size: 24px;"></i></a>
+        <?php
+                $sql = "SELECT * FROM fasilitas WHERE ID_Fasilitas = '4'";
+                $results = mysqli_query($db, $sql) or die( mysqli_error($db));
+                $row = mysqli_fetch_array($results)
+            ?>
+        <h1><?php echo $row["Nama_Fasilitas"]; ?></h1>
     </div>
     <div class="header-photo"></div>
     <section>
         <div class="desc">
             <i class="fa fa-file-text-o" id="iconDesc" aria-hidden="true" style="color: #0d7a6f; font-size: 24px;"> Description</i>
-            <h3>Lapangan Futsal A adalah lapangan outdoor. Lapangan ini sudah berstandar nasional dan bisa dipergunakan untuk berolahraga
-                    maupun untuk latihan. Lapangan Futsal A terletak disebelah lahan parkir PASAGA. Bola Futsal 
-                    sudah disediakan. Lapangan ini berukuran 28 meter x 15 meter dan 
-                    berstandar nasional. Booking minimal 2 jam dan kelipatan 2 jam.
-            </h3>
+            
+            <h3> <?php echo $row["Deskripsi"]; ?></h3>
         </div>
         <div class="gallery">
             <i class="fa fa-camera" id="iconCamera" aria-hidden="true" style="color: #0d7a6f; font-size: 24px;"> Gallery</i>
             <div id="slider">
                 <figure>
-                    <img src="img/futsal1.jpg">
-                    <img src="img/futsal2.jpg">
-                    <img src="img/futsal.jpg">
-                    <img src="img/futsal1.jpg">
-                    <img src="img/futsal2.jpg">
+                    <img src="../../Image/basket.jpg">
+                    <img src="../../Image/basketB.jpg">
+                    <img src="../../Image/basket1.jpg">
+                    <img src="../../Image/basket2.jpg">
+                    <img src="../../Image/basket.jpg">
                 </figure>
             </div>
         </div>
@@ -216,28 +218,28 @@
                 <th>17.00 - 21.00 WIB</th>
             </tr>
             <tr>
-                <td>Weekday : Rp66.000</td>
-                <td>Weekday : Rp70.000</td>
-                <td>Weekday : Rp75.000</td>
+                <td>Weekday : <?php echo "Rp".$row["Tarif_Per_Jam(Weekday 06.00-14.00)"]; ?></td>
+                <td>Weekday : <?php echo "Rp".$row["Tarif_Per_Jam(Weekday 14.00-17.00)"]; ?></td>
+                <td>Weekday : <?php echo "Rp".$row["Tarif_Per_Jam(Weekday 17.00-21.00)"]; ?></td>
             </tr>
 
             <tr>
-                <td>Friday : Rp70.000</td>
-                <td>Friday : Rp75.000</td>
-                <td>Friday : Rp80.000</td>
+                <td>Friday : <?php echo "Rp".$row["Tarif_Per_Jam(Jumat 06.00-14.00)"]; ?></td>
+                <td>Friday : <?php echo "Rp".$row["Tarif_Per_Jam(Jumat 14.00-17.00)"]; ?></td>
+                <td>Friday : <?php echo "Rp".$row["Tarif_Per_Jam(Jumat 17.00-21.00)"]; ?></td>
             </tr>
 
             <tr>
-                <td>Weekend : Rp80.000</td>
-                <td>Weekend : Rp85.000</td>
-                <td>Weekend : Rp88.000</td>
+                <td>Weekend : <?php echo "Rp".$row["Tarif_Per_Jam(Weekend 06.00-14.00)"]; ?></td>
+                <td>Weekend : <?php echo "Rp".$row["Tarif_Per_Jam(Weekend 14.00-17.00)"]; ?></td>
+                <td>Weekend : <?php echo "Rp".$row["Tarif_Per_Jam(Weekend 17.00-21.00)"]; ?></td>
             </tr>
         </table>
     </div>
 
     <div class="form-booking">
         <i class="fa fa-file-text-o" id="iconForm" aria-hidden="true" style="color: #0d7a6f; font-size: 24px;"> Form Booking</i>
-        <form action="detail-futsal-book-logged.php" method="POST">
+        <form action="detail-basketB-book-logged.php" method="POST">
             <label for="">Pilih Tanggal</label> <br>
             <input type="date" name="tanggal-pilihan" id="datePicker" value="" onchange="handler()" min="<?php echo date("Y-m-d"); ?>"> <br> <br>
 
@@ -267,7 +269,7 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-default" name='btnConfirm' value='send'>Confirm Booking</button>
+                            <button type="submit" class="btn btn-default" name='btnConfirmBasketB' value='send'>Confirm Booking</button>
                         </div>
                     </div>
                 </div>
@@ -277,7 +279,7 @@
 
     <footer>
         <div class="footer-content">
-            <img src="../Image/Logo_UNPAR.png" alt="" style="width:5%; margin-top: 24px;">
+            <img src="../../Image/Logo_UNPAR.png" alt="" style="width:5%; margin-top: 24px;">
             <h3>Pasaga Unpar</h3>
             <p>Pasaga Unpar adalah sarana dan prasarana olahraga <br>yang dikelola oleh Yayasan Unpar</p>
             <ul class="socials">
@@ -352,45 +354,45 @@ endTime.addEventListener("input", function() {
     console.log(hours);
     console.log(jamBooking);
 
-    var weekday_14 = 66000;
-    var weekday_17 = 70000;
-    var weekday_21 = 75000;
+    var weekday_14 = <?php echo $row["Tarif_Per_Jam(Weekday 06.00-14.00)"]; ?>;
+    var weekday_17 = <?php echo $row["Tarif_Per_Jam(Weekday 14.00-17.00)"]; ?>;
+    var weekday_21 = <?php echo $row["Tarif_Per_Jam(Weekday 17.00-21.00)"]; ?>;
 
-    var jumat_14 = 70000;
-    var jumat_17 = 75000;
-    var jumat_21 = 80000;
+    var jumat_14 = <?php echo $row["Tarif_Per_Jam(Jumat 06.00-14.00)"]; ?>;
+    var jumat_17 = <?php echo $row["Tarif_Per_Jam(Jumat 14.00-17.00)"]; ?>;
+    var jumat_21 = <?php echo $row["Tarif_Per_Jam(Jumat 17.00-21.00)"]; ?>;
 
 
-    var weekend_14 = 80000;
-    var weekend_17 = 85000;
-    var weekend_21 = 88000;
+    var weekend_14 = <?php echo $row["Tarif_Per_Jam(Weekend 06.00-14.00)"]; ?>;
+    var weekend_17 = <?php echo $row["Tarif_Per_Jam(Weekend 14.00-17.00)"]; ?>;
+    var weekend_21 = <?php echo $row["Tarif_Per_Jam(Weekend 17.00-21.00)"]; ?>;
 
     //Jika weekend, kondisi jam booking <=14.00 , <= 17.00, <= 21.00
-    if(yourDate.getDay() == 6 || yourDate.getDay() == 0 && jamBooking <= 14 && hours == 02){
+    if((yourDate.getDay() == 6 || yourDate.getDay() == 0) && jamBooking <= 14 && hours == 02){
         valueTarif.textContent = "Rp." + (weekend_14*2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-    else if(yourDate.getDay() == 6 || yourDate.getDay() == 0 && jamBooking <= 14 && hours == 04){
+    else if((yourDate.getDay() == 6 || yourDate.getDay() == 0) && jamBooking <= 14 && hours == 04){
         valueTarif.textContent = "Rp." + (weekend_14*4).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-    else if(yourDate.getDay() == 6 || yourDate.getDay() == 0 && jamBooking <= 14 && hours == 06){
+    else if((yourDate.getDay() == 6 || yourDate.getDay() == 0) && jamBooking <= 14 && hours == 06){
         valueTarif.textContent = "Rp." + (weekend_14*6).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-    else if(yourDate.getDay() == 6 || yourDate.getDay() == 0 && jamBooking <= 14 && hours == 08){
+    else if((yourDate.getDay() == 6 || yourDate.getDay() == 0) && jamBooking <= 14 && hours == 08){
         valueTarif.textContent = "Rp." + (weekend_14*8).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-    else if(yourDate.getDay() == 6 || yourDate.getDay() == 0 && jamBooking <= 17 && hours == 01){
+    else if((yourDate.getDay() == 6 || yourDate.getDay() == 0) && jamBooking > 14 && jamBooking <= 17 && hours == 01){
         valueTarif.textContent = "Rp." + (weekend_17).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-    else if(yourDate.getDay() == 6 || yourDate.getDay() == 0 && jamBooking <= 17 && hours == 02){
+    else if((yourDate.getDay() == 6 || yourDate.getDay() == 0) && jamBooking > 14 && jamBooking <= 17 && hours == 02){
         valueTarif.textContent = "Rp." + (weekend_17*2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-    else if(yourDate.getDay() == 6 || yourDate.getDay() == 0 && jamBooking <= 17 && hours == 03){
+    else if((yourDate.getDay() == 6 || yourDate.getDay() == 0) && jamBooking > 14 && jamBooking <= 17 && hours == 03){
         valueTarif.textContent = "Rp." + (weekend_17*3).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-    else if(yourDate.getDay() == 6 || yourDate.getDay() == 0 && jamBooking <= 21 && hours == 02){
+    else if((yourDate.getDay() == 6 || yourDate.getDay() == 0) && jamBooking > 17 && jamBooking <= 21 && hours == 02){
         valueTarif.textContent = "Rp." + (weekend_21*2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-    else if(yourDate.getDay() == 6 || yourDate.getDay() == 0 && jamBooking <= 21 && hours == 04){
+    else if((yourDate.getDay() == 6 || yourDate.getDay()) == 0 && jamBooking > 17 && jamBooking <= 21 && hours == 04){
         valueTarif.textContent = "Rp." + (weekend_21*3).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 

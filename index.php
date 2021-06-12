@@ -53,8 +53,7 @@
                         ?>
                 
                 <form action="index.php" method="post">
-                <div class="card" style="height:580px">
-                    <img src="Image/futsal.jpg" alt="Lap Futsal" style="width:100%">
+                <div class="card" style="height:385px">
                     <div class="namaFasilitas">
                         <h3><?php echo $row["Nama_Fasilitas"]."<br>"; ?></h3>
                     </div>
@@ -63,14 +62,23 @@
 
                         <p>Nama Peminjam : <?php echo $row["Nama"]."<br>"; ?></p>
                         <p>Email Peminjam : <?php echo $row["Email"]."<br>"; ?></p>
-                        <p>Durasi Peminjam : <?php echo $row["Jam_Awal_Pemakaian"]." - ".$row["Jam_Selesai_Pemakaian"]."<br>"; ?></p>
-                        <p>Booking untuk tanggal : <?php echo $row["Tanggal_Pemakaian"]."<br>"; ?></p>
+                        <p>Durasi Peminjam : <?php $jamAwal = date_create($row["Jam_Awal_Pemakaian"]); 
+                        $jamAkhir = date_create($row["Jam_Selesai_Pemakaian"]);echo date_format($jamAwal, "H:i")." - ".date_format($jamAkhir, "H:i")."<br>"; ?></p>
+                        <p>Booking untuk tanggal : <?php $tanggalPakai = date_create($row["Tanggal_Pemakaian"]);
+                        echo date_format($tanggalPakai, "d-m-Y")."<br>"; ?></p>
                         <p>Status Pembayaran : <?php echo $row["Status_Pembayaran"]."<br>"; ?></p>
                         <p>Bukti Pembayaran : <img src="Pengguna/uploads/<?php echo $row["bukti_pembayaran"]?>" alt="" style="width:15%"></p>
 
+                        <input type="hidden" name="emailTujuan" value="<?php echo $row["Email"]; ?>">
+                        <input type="hidden" name="namaPeminjam" value="<?php echo $row["Nama"]; ?>">
+                        <input type="hidden" name="tanggalPakai" value="<?php echo $row["Tanggal_Pemakaian"]; ?>">
+                        <input type="hidden" name="namaFasilitas" value="<?php echo $row["Nama_Fasilitas"]; ?>">
+                        <input type="hidden" name="jamAwal" value="<?php echo $row["Jam_Awal_Pemakaian"]; ?>">
+                        <input type="hidden" name="jamSelesai" value="<?php echo $row["Jam_Selesai_Pemakaian"]; ?>">
+
                     </div>
                     <div class="buttonaction" style="margin-top:50px">
-                    <p><button type="submit" id="btnAccept_index" name="btnAcceptPesanan" style="padding:12px; <?php if(isset($_POST['btnAcceptPesanan'])) echo" color:red;"?>">Accept</button></p>
+                    <p><button type="submit" id="btnAccept_index" name="btnAcceptPesanan" style="padding:12px;">Accept</button></p>
                     <p><button type="button" id="btnDecline" name="btnDecline" style="margin-top:0px" onclick="document.getElementById('id01-<?=$row['ID_Pemesanan'] ?>').style.display='block'" class="w3-button w3-red">Decline</button></p>
                     </div>
                 </div>

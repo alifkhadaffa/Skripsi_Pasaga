@@ -72,7 +72,7 @@
     
     <div class="main_content">
     <?php
-        $sql = "SELECT * FROM fasilitas WHERE ID_Fasilitas = '2'";
+        $sql = "SELECT * FROM fasilitas WHERE ID_Fasilitas = '6'";
         $results = mysqli_query($db, $sql) or die( mysqli_error($db));
         $row = mysqli_fetch_array($results)
     ?>
@@ -126,7 +126,7 @@
 
         <hr style="width: 90%; text-align: left; margin-left: 18px; border-color: honeydew; margin-top: 24px;">
 
-        <button type="submit" class="btn-1" name="saveEditFutsalB">Save</button> <br>
+        <button type="submit" class="btn-1" name="saveEditVoliB">Save</button> <br>
         </form>
     </div>
 

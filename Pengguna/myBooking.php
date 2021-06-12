@@ -101,9 +101,12 @@ input[type="file"] {
                     </div>
 
                     <div class="detail-peminjam" style="width:30%;float:left">
-                        <p style="margin-bottom: 8px;margin-left:24px;color: #0a2724;">Booking untuk Tanggal: <?php echo $row["Tanggal_Pemakaian"]."<br>"; ?> </p>
-                        <p style="margin-bottom: 8px;margin-left:-24px;color: #0a2724;">Status Pemesanan: <?php echo $row["Status_Pemesanan"]."<br>"; ?> </p>
-                        <p style="margin-bottom: 8px;margin-left:-20px;color: #0a2724;">Status Pembayaran: <?php echo $row["Status_Pembayaran"]."<br>"; ?> </p>
+                        <p style="margin-bottom: 8px;margin-left:24px;color: #0a2724;">Booking untuk Tanggal: <?php $tanggalPakai = date_create($row["Tanggal_Pemakaian"]);
+                        echo date_format($tanggalPakai, "d-m-Y")."<br>"; ?> </p>
+                        <p style="margin-bottom: 8px;margin-left:24px;color: #0a2724;">Jam Pemakaian: <?php $jamAwal = date_create($row["Jam_Awal_Pemakaian"]); 
+                        $jamAkhir = date_create($row["Jam_Selesai_Pemakaian"]);echo date_format($jamAwal, "H:i")." - ".date_format($jamAkhir, "H:i")."<br>"; ?> </p>
+                        <p style="margin-bottom: 8px;color: #0a2724;">Status Pemesanan: <?php echo $row["Status_Pemesanan"]."<br>"; ?> </p>
+                        <p style="margin-bottom: 8px;color: #0a2724;">Status Pembayaran: <?php echo $row["Status_Pembayaran"]."<br>"; ?> </p>
                         <p style="margin-bottom: 8px;margin-left:-80px;color: #0a2724;">Bukti Pembayaran :</p>
                         <img src="uploads/<?php echo $row["bukti_pembayaran"]?>" alt="" style="width:15%">
                     </div>

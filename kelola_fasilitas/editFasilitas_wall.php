@@ -72,7 +72,7 @@
     
     <div class="main_content">
     <?php
-        $sql = "SELECT * FROM fasilitas WHERE ID_Fasilitas = '2'";
+        $sql = "SELECT * FROM fasilitas WHERE ID_Fasilitas = '9'";
         $results = mysqli_query($db, $sql) or die( mysqli_error($db));
         $row = mysqli_fetch_array($results)
     ?>
@@ -126,44 +126,10 @@
 
         <hr style="width: 90%; text-align: left; margin-left: 18px; border-color: honeydew; margin-top: 24px;">
 
-        <button type="submit" class="btn-1" name="saveEditFutsalB">Save</button> <br>
+        <button type="submit" class="btn-1" name="saveEditWall">Save</button> <br>
         </form>
     </div>
 
-    <script>
-        const wrapperEdit = document.querySelector(".wrapper-edit");
-        const fileName = document.querySelector(".file-name");
-        const defaultBtn = document.querySelector("#default-btn");
-        const customBtn = document.querySelector("#custom-btn");
-        const cancelBtn = document.querySelector("#cancel-btn");
-        const img = document.querySelector("img")
-        let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
-        function defaultBtnActive(){
-            defaultBtn.click();
-        }
-
-        defaultBtn.addEventListener("change" , function(){
-            const file = this.files[0];
-           if(file){
-            const reader = new FileReader();
-            reader.onload = function(){
-                const result = reader.result;
-                img.src = result;
-                wrapperEdit.classList.add("active");
-            }
-            cancelBtn.addEventListener("click" , function(){
-                img.src = "";
-                wrapperEdit.classList.remove("active");
-            })
-            reader.readAsDataURL(file);
-        }
-        if(this.value){
-            let valueStore = this.value.match(regExp);
-            fileName.textContent = valueStore;
-        }
-        });
-           
-    </script>
 </div>
 </body>
 </html>

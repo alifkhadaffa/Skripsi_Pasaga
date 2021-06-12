@@ -82,7 +82,7 @@
             <h4 style="font-weight: lighter;">Mari berolahraga di Pasaga Unpar dan rasakan pengalaman<br>berolahraga yang menyenangkan</h4>
         </div>
 
-        <a href="detail-futsal-book-logged.php" class="card-link">
+        <a href="page_fasilitas/detail-futsal-book-logged.php" class="card-link">
         <div class="card">
             <img src="../Image/futsal.jpg" alt="Lap Futsal" style="width:100%">
             
@@ -101,7 +101,7 @@
           </div>
         </a>
 
-        <a href="detail-futsalB-book-logged.php" class="card-link">
+        <a href="page_fasilitas/detail-futsalB-book-logged.php" class="card-link">
           <div class="card">
             <img src="../Image/futsalB.jpg" alt="Lap Futsal" style="width:100%">
             
@@ -120,7 +120,7 @@
           </div>
         </a>
 
-        <a href="detail-basketA-book-logged.php" class="card-link">
+        <a href="page_fasilitas/detail-basketA-book-logged.php" class="card-link">
           <div class="card">
             <img src="../Image/basket.jpg" alt="Lap Futsal" style="width:100%">
             
@@ -139,7 +139,7 @@
           </div>
         </a>
 
-
+        <a href="page_fasilitas/detail-basketB-book-logged.php" class="card-link">
           <div class="card">
             <img src="../Image/basketB.jpg" alt="Lap Futsal" style="width:100%">
             
@@ -156,16 +156,18 @@
                 </div>
             </div>
           </div>
+        </a>
 
+        <a href="page_fasilitas/detail-tennisA-book-logged.php" class="card-link">
           <div class="card">
-            <img src="../Image/tennis.jpg" alt="Lap Futsal" style="width:100%">
+            <img src="../Image/tennis.jpg" alt="Lap Tennis" style="width:100%">
             
             <div class="namaFasilitas">
-                <h3 style="color: #0d7a6f;">Lapangan Tennis</h3>
+                <h3 style="color: #0d7a6f;">Lapangan Tennis A</h3>
             </div>
 
             <div class="detail-peminjam">
-                <p style="margin-bottom: 8px;color: #0a2724;">Lapangan Tennis A dan B adalah Lapangan outdoor untuk olahraga tennis yang terletak dibawah lapangan basket, terletak.
+                <p style="margin-bottom: 8px;color: #0a2724;">Lapangan Tennis A adalah Lapangan outdoor untuk olahraga tennis yang terletak dibawah lapangan basket, lapangan ini bisa digunakan untuk olahraga rutin.
                 </p>
                 <div class="iconCard">
                 <p style="color:#0d7a6f; margin-top: 16px;">Jam operasional <i class="fa fa-clock-o" style="color: #0d7a6f;"></i> : 06.00 - 21.00 WIB</p>
@@ -173,7 +175,28 @@
                 </div>
             </div>
           </div>
+        </a>
 
+        <a href="page_fasilitas/detail-tennisB-book-logged.php" class="card-link">
+          <div class="card">
+            <img src="../Image/tennis.jpg" alt="Lap Tennis" style="width:100%">
+            
+            <div class="namaFasilitas">
+                <h3 style="color: #0d7a6f;">Lapangan Tennis B</h3>
+            </div>
+
+            <div class="detail-peminjam">
+                <p style="margin-bottom: 8px;color: #0a2724;">Lapangan Tennis B adalah Lapangan outdoor untuk olahraga tennis yang terletak dibawah lapangan basket, lapangan ini bisa digunakan untuk olahraga rutin.
+                </p>
+                <div class="iconCard">
+                <p style="color:#0d7a6f; margin-top: 16px;">Jam operasional <i class="fa fa-clock-o" style="color: #0d7a6f;"></i> : 06.00 - 21.00 WIB</p>
+                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp30.000 - Rp104.000 (*per jam) </p>
+                </div>
+            </div>
+          </div>
+        </a>
+
+        <a href="page_fasilitas/detail-voliA-book-logged.php" class="card-link">
           <div class="card">
             <img src="../Image/VoliB.jpg" alt="Lap Futsal" style="width:100%;">
             
@@ -182,7 +205,7 @@
             </div>
 
             <div class="detail-peminjam">
-                <p style="margin-bottom: 8px;color: #0a2724;">Lapangan Tennis A dan B adalah Lapangan outdoor untuk olahraga tennis yang terletak dibawah lapangan basket, terletak.
+                <p style="margin-bottom: 8px;color: #0a2724;">Lapangan voli A adalah lapangan yang terletak bersamaan dengan lapangan basket dan bisa dipergunakan untuk latihan maupun berolahraga.
                 </p>
                 <div class="iconCard">
                 <p style="color:#0d7a6f; margin-top: 16px;">Jam operasional <i class="fa fa-clock-o" style="color: #0d7a6f;"></i> : 06.00 - 21.00 WIB</p>
@@ -190,7 +213,9 @@
                 </div>
             </div>
           </div>
+          </a>
 
+          <a href="page_fasilitas/detail-voliB-book-logged.php" class="card-link">
           <div class="card">
             <img src="../Image/VoliA.jpg" alt="Lap Futsal" style="width:100%">
             
@@ -207,7 +232,10 @@
                 </div>
             </div>
           </div>
+          </a>
 
+
+          <a href="page_fasilitas/detail-wall-book-logged.php" class="card-link">
           <div class="card">
             <img src="../Image/wall-climb.jpg" alt="Lap Wall Climbing">
             
@@ -224,6 +252,7 @@
                 </div>
             </div>
           </div>
+          </a>
 
 
     </div>

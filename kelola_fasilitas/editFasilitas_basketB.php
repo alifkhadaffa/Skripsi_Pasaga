@@ -72,12 +72,12 @@
     
     <div class="main_content">
     <?php
-        $sql = "SELECT * FROM fasilitas WHERE ID_Fasilitas = '2'";
+        $sql = "SELECT * FROM fasilitas WHERE ID_Fasilitas = '4'";
         $results = mysqli_query($db, $sql) or die( mysqli_error($db));
         $row = mysqli_fetch_array($results)
     ?>
             <div class="header">Kelola Fasilitas</div>  
-            <form action="editFasilitas_futsalB.php" method="post" enctype="multipart/form-data">
+            <form action="editFasilitas_basketB.php" method="post" enctype="multipart/form-data">
             <div class="info">
                 <div class="img">
                     <img src="../uploads/<?php echo $row["foto_fasilitas"]?>" style="width:20%">
@@ -126,7 +126,7 @@
 
         <hr style="width: 90%; text-align: left; margin-left: 18px; border-color: honeydew; margin-top: 24px;">
 
-        <button type="submit" class="btn-1" name="saveEditFutsalB">Save</button> <br>
+        <button type="submit" class="btn-1" name="saveEditBasketB">Save</button> <br>
         </form>
     </div>
 

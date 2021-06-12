@@ -115,13 +115,15 @@ if (isset($_POST['btnConfirm'])) {
     $tanggal = mysqli_real_escape_string($db , $_POST['tanggal-pilihan']);
     $final_tanggal = date('Y-m-d' , strtotime($tanggal));
     $jam = time();
-    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan)
-    VALUES ('{$_SESSION['id']}','1' , '$final_tanggal' , 'Pending' , 'Pending', NOW())";
+    $jamAwal = $_POST['jam-mulai'];
+    $jamSelesai = $_POST['jam-selesai'];
+    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan, Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian)
+    VALUES ('{$_SESSION['id']}','1' , '$final_tanggal' , 'Pending' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai')";
     $res = mysqli_query($db, $query);
 
     if($res){
         $_SESSION['success'] = "Your booking is on review";
-        header('location: myBooking.php');
+        header('location: ../myBooking.php');
     }
     else{
         echo "Booking Gagal";
@@ -142,7 +144,7 @@ if (isset($_POST['btnConfirmFutsalB'])) {
 
     if($res){
         $_SESSION['success'] = "Your booking is on review";
-        header('location: myBooking.php');
+        header('location: ../myBooking.php');
     }
     else{
         echo "Booking Gagal";
@@ -154,13 +156,142 @@ if (isset($_POST['btnConfirmBasketA'])) {
     $tanggal = mysqli_real_escape_string($db , $_POST['tanggal-pilihan']);
     $final_tanggal = date('Y-m-d' , strtotime($tanggal));
     $jam = time();
-    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan)
-    VALUES ('{$_SESSION['id']}','2' , '$final_tanggal' , 'Pending' , 'Pending', NOW())";
+    $jamAwal = $_POST['jam-mulai'];
+    $jamSelesai = $_POST['jam-selesai'];
+    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan,
+    Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian)
+    VALUES ('{$_SESSION['id']}','3' , '$final_tanggal' , 'Pending' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai')";
     $res = mysqli_query($db, $query);
 
     if($res){
         $_SESSION['success'] = "Your booking is on review";
-        header('location: myBooking.php');
+        header('location: ../myBooking.php');
+    }
+    else{
+        echo "Booking Gagal";
+    }
+}
+
+//Konfirmasi pemesanan Basket B
+if (isset($_POST['btnConfirmBasketB'])) {
+    $tanggal = mysqli_real_escape_string($db , $_POST['tanggal-pilihan']);
+    $final_tanggal = date('Y-m-d' , strtotime($tanggal));
+    $jam = time();
+    $jamAwal = $_POST['jam-mulai'];
+    $jamSelesai = $_POST['jam-selesai'];
+    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan,
+    Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian)
+    VALUES ('{$_SESSION['id']}','4' , '$final_tanggal' , 'Pending' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai')";
+    $res = mysqli_query($db, $query);
+
+    if($res){
+        $_SESSION['success'] = "Your booking is on review";
+        header('location: ../myBooking.php');
+    }
+    else{
+        echo "Booking Gagal";
+    }
+}
+
+//Konfirmasi pemesanan Voli A
+if (isset($_POST['btnConfirmVoliA'])) {
+    $tanggal = mysqli_real_escape_string($db , $_POST['tanggal-pilihan']);
+    $final_tanggal = date('Y-m-d' , strtotime($tanggal));
+    $jam = time();
+    $jamAwal = $_POST['jam-mulai'];
+    $jamSelesai = $_POST['jam-selesai'];
+    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan,
+    Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian)
+    VALUES ('{$_SESSION['id']}','5' , '$final_tanggal' , 'Pending' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai')";
+    $res = mysqli_query($db, $query);
+
+    if($res){
+        $_SESSION['success'] = "Your booking is on review";
+        header('location: ../myBooking.php');
+    }
+    else{
+        echo "Booking Gagal";
+    }
+}
+
+//Konfirmasi pemesanan Voli B
+if (isset($_POST['btnConfirmVoliB'])) {
+    $tanggal = mysqli_real_escape_string($db , $_POST['tanggal-pilihan']);
+    $final_tanggal = date('Y-m-d' , strtotime($tanggal));
+    $jam = time();
+    $jamAwal = $_POST['jam-mulai'];
+    $jamSelesai = $_POST['jam-selesai'];
+    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan,
+    Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian)
+    VALUES ('{$_SESSION['id']}','6' , '$final_tanggal' , 'Pending' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai')";
+    $res = mysqli_query($db, $query);
+
+    if($res){
+        $_SESSION['success'] = "Your booking is on review";
+        header('location: ../myBooking.php');
+    }
+    else{
+        echo "Booking Gagal";
+    }
+}
+
+//Konfirmasi pemesanan Tennis A
+if (isset($_POST['btnConfirmTennisA'])) {
+    $tanggal = mysqli_real_escape_string($db , $_POST['tanggal-pilihan']);
+    $final_tanggal = date('Y-m-d' , strtotime($tanggal));
+    $jam = time();
+    $jamAwal = $_POST['jam-mulai'];
+    $jamSelesai = $_POST['jam-selesai'];
+    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan,
+    Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian)
+    VALUES ('{$_SESSION['id']}','7' , '$final_tanggal' , 'Pending' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai')";
+    $res = mysqli_query($db, $query);
+
+    if($res){
+        $_SESSION['success'] = "Your booking is on review";
+        header('location: ../myBooking.php');
+    }
+    else{
+        echo "Booking Gagal";
+    }
+}
+
+//Konfirmasi pemesanan Tennis B
+if (isset($_POST['btnConfirmTennisB'])) {
+    $tanggal = mysqli_real_escape_string($db , $_POST['tanggal-pilihan']);
+    $final_tanggal = date('Y-m-d' , strtotime($tanggal));
+    $jam = time();
+    $jamAwal = $_POST['jam-mulai'];
+    $jamSelesai = $_POST['jam-selesai'];
+    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan,
+    Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian)
+    VALUES ('{$_SESSION['id']}','8' , '$final_tanggal' , 'Pending' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai')";
+    $res = mysqli_query($db, $query);
+
+    if($res){
+        $_SESSION['success'] = "Your booking is on review";
+        header('location: ../myBooking.php');
+    }
+    else{
+        echo "Booking Gagal";
+    }
+}
+
+//Konfirmasi pemesanan Wall Climbing
+if (isset($_POST['btnConfirmWall'])) {
+    $tanggal = mysqli_real_escape_string($db , $_POST['tanggal-pilihan']);
+    $final_tanggal = date('Y-m-d' , strtotime($tanggal));
+    $jam = time();
+    $jamAwal = $_POST['jam-mulai'];
+    $jamSelesai = $_POST['jam-selesai'];
+    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan,
+    Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian)
+    VALUES ('{$_SESSION['id']}','9' , '$final_tanggal' , 'Pending' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai')";
+    $res = mysqli_query($db, $query);
+
+    if($res){
+        $_SESSION['success'] = "Your booking is on review";
+        header('location: ../myBooking.php');
     }
     else{
         echo "Booking Gagal";
@@ -168,6 +299,8 @@ if (isset($_POST['btnConfirmBasketA'])) {
 }
 
 
+
+//untuk edit profile
 if(isset($_POST['btnEdit'])){
     $namaBaru =  $_POST['name'];
     $emailBaru = $_POST['email'];
@@ -332,5 +465,85 @@ if(isset($_POST['saveEditFutsalB'])){
     `Tarif_Per_Jam(Weekend 14.00-17.00)` = '$hargaEnd14' , `Tarif_Per_Jam(Weekend 17.00-21.00)` = '$hargaEnd17', foto_fasilitas = '$fileNameNew' WHERE ID_Fasilitas = '2'";
     mysqli_query($db , $sql);
     header("Location: editFasilitas_futsalB.php?editBerhasil");
+}
+
+//Edit fasilitas Basket A Admin
+if(isset($_POST['saveEditBasketA'])){
+    $namaNew = $_POST['namaFasilitas'];
+    $deskripsiNew = $_POST['DeskripsiFas'];
+    $hargaDay6 = $_POST['hargaday6'];
+    $hargaDay14 = $_POST['hargaday14'];
+    $hargaDay17 = $_POST['hargaday17'];
+
+    $hargaJum6 = $_POST['hargajum6'];
+    $hargaJum14 = $_POST['hargajum14'];
+    $hargaJum17 = $_POST['hargajum17'];
+
+    $hargaEnd6 = $_POST['hargaend6'];
+    $hargaEnd14 = $_POST['hargaend14'];
+    $hargaEnd17 = $_POST['hargaend17'];
+
+    //untuk upload foto fasilitas
+    $file = $_FILES['fileFotoFasilitas'];
+    $fileName = $_FILES['fileFotoFasilitas']['name'];
+    $fileTmpName = $_FILES['fileFotoFasilitas']['tmp_name'];
+    $fileSize = $_FILES['fileFotoFasilitas']['size'];
+    $fileError = $_FILES['fileFotoFasilitas']['error'];
+    $fileType = $_FILES['fileFotoFasilitas']['type'];
+
+    $fileExt = explode('.' , $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+
+    $allowed = array('jpg', 'jpeg' , 'png', 'pdf');
+    $fileNameNew = uniqid(',' , true).".".$fileActualExt;
+    $fileDestination = '../uploads/'.$fileNameNew;
+    move_uploaded_file($fileTmpName, $fileDestination);
+
+    $sql = "UPDATE fasilitas SET Nama_Fasilitas = '$namaNew' , Deskripsi = '$deskripsiNew' , `Tarif_Per_Jam(Weekday 06.00-14.00)` = '$hargaDay6' ,
+    `Tarif_Per_Jam(Weekday 14.00-17.00)` = '$hargaDay14' , `Tarif_Per_Jam(Weekday 17.00-21.00)` = '$hargaDay17' , `Tarif_Per_Jam(Jumat 06.00-14.00)` = '$hargaJum6' ,
+    `Tarif_Per_Jam(Jumat 14.00-17.00)` = '$hargaJum14' , `Tarif_Per_Jam(Jumat 17.00-21.00)` = '$hargaJum17' , `Tarif_Per_Jam(Weekend 06.00-14.00)` = '$hargaEnd6' ,
+    `Tarif_Per_Jam(Weekend 14.00-17.00)` = '$hargaEnd14' , `Tarif_Per_Jam(Weekend 17.00-21.00)` = '$hargaEnd17', foto_fasilitas = '$fileNameNew' WHERE ID_Fasilitas = '3'";
+    mysqli_query($db , $sql);
+    header("Location: editFasilitas_basketA.php?editBerhasil");
+}
+
+//Edit fasilitas Basket B Admin
+if(isset($_POST['saveEditBasketB'])){
+    $namaNew = $_POST['namaFasilitas'];
+    $deskripsiNew = $_POST['DeskripsiFas'];
+    $hargaDay6 = $_POST['hargaday6'];
+    $hargaDay14 = $_POST['hargaday14'];
+    $hargaDay17 = $_POST['hargaday17'];
+
+    $hargaJum6 = $_POST['hargajum6'];
+    $hargaJum14 = $_POST['hargajum14'];
+    $hargaJum17 = $_POST['hargajum17'];
+
+    $hargaEnd6 = $_POST['hargaend6'];
+    $hargaEnd14 = $_POST['hargaend14'];
+    $hargaEnd17 = $_POST['hargaend17'];
+
+    //untuk upload foto fasilitas
+    $file = $_FILES['fileFotoFasilitas'];
+    $fileName = $_FILES['fileFotoFasilitas']['name'];
+    $fileTmpName = $_FILES['fileFotoFasilitas']['tmp_name'];
+    $fileSize = $_FILES['fileFotoFasilitas']['size'];
+    $fileError = $_FILES['fileFotoFasilitas']['error'];
+    $fileType = $_FILES['fileFotoFasilitas']['type'];
+
+    $fileExt = explode('.' , $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+
+    $allowed = array('jpg', 'jpeg' , 'png', 'pdf');
+    $fileNameNew = uniqid(',' , true).".".$fileActualExt;
+    $fileDestination = '../uploads/'.$fileNameNew;
+    move_uploaded_file($fileTmpName, $fileDestination);
+
+    $sql = "UPDATE fasilitas SET Nama_Fasilitas = '$namaNew' , Deskripsi = '$deskripsiNew' , `Tarif_Per_Jam(Weekday 06.00-14.00)` = '$hargaDay6' ,
+    `Tarif_Per_Jam(Weekday 14.00-17.00)` = '$hargaDay14' , `Tarif_Per_Jam(Weekday 17.00-21.00)` = '$hargaDay17' , `Tarif_Per_Jam(Jumat 06.00-14.00)` = '$hargaJum6' ,
+    `Tarif_Per_Jam(Jumat 14.00-17.00)` = '$hargaJum14' , `Tarif_Per_Jam(Jumat 17.00-21.00)` = '$hargaJum17' , `Tarif_Per_Jam(Weekend 06.00-14.00)` = '$hargaEnd6' ,
+    `Tarif_Per_Jam(Weekend 14.00-17.00)` = '$hargaEnd14' , `Tarif_Per_Jam(Weekend 17.00-21.00)` = '$hargaEnd17', foto_fasilitas = '$fileNameNew' WHERE ID_Fasilitas = '4'";
+    mysqli_query($db , $sql);
+    header("Location: editFasilitas_basketB.php?editBerhasil");
 }
 ?>
