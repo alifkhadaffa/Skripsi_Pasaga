@@ -99,6 +99,7 @@ if(isset($_POST['btnAcceptPesanan'])){
         <br> Phone : (022) 20451999 </h5>";
         $mail->send();
         $alert = '<span>Message dikirim!</span>';
+        header("Location: statistik.php");
     }
 
     catch(Exception $e){

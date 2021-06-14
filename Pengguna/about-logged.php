@@ -59,8 +59,8 @@
                           </button>
                           
                           <div class="dropdown-content">
-                            <a href="#"><i class="fa fa-file-alt"></i> My Booking</a>
-                            <a href="#"><i class="fa fa-user"></i> Edit Profile</a>
+                            <a href="mybooking.php"><i class="fa fa-file-alt"></i> My Booking</a>
+                            <a href="editProfile.php"><i class="fa fa-user"></i> Edit Profile</a>
                             <a href="logout.php" tite="Logout"><i class="fa fa-power-off"></i> Logout</a>
                           </div>
                         </div> 

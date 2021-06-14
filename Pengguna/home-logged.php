@@ -14,6 +14,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
     <title>Home Pengguna</title>
+
+    <style>
+        body{
+            overflow-x : hidden;
+        }
+        .column{
+            width : 444px;
+        }
+        .card{
+            width : 439px;
+        }
+    </style>
 </head>
 <body>
     <header class="l-header">

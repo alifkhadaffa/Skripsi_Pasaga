@@ -265,6 +265,10 @@
                             <p>Waktu akhir pemakaian: </p> <span id="info-jam-selesai" style="color:#0d7a6f" name="info-jam-selesai"></span> <br> <br>
                             <p>Tarif: </p> <span id="tarif" style="color:#0d7a6f" name="tarif"></span> <br> <br>
                             <p>Bayar ke nomor rekening : BCA 76367281 a/n Pasaga Unpar</p>
+                            <input type="radio" id="lunas" name="radio" value="lunas" onchange="handler()" checked>
+                            <label for="lunas">Pembayaran langsung lunas</label><br>
+                            <input type="radio" id="dp" name="radio" value="dp" onchange="handler()">
+                            <label for="dp">Pembayaran uang muka 50%</label><br>
                         </div>
 
                         <div class="modal-footer">
@@ -333,6 +337,8 @@ endTime.addEventListener("input", function() {
 <script>
     function handler(){
     var valueTarif = document.getElementById("tarif");
+    var lunas = document.getElementById("lunas");
+    var dp = document.getElementById("dp");
     var date = document.getElementById("datePicker").value;
     var yourDate = new Date(date);
     console.log(yourDate.getDay());
@@ -367,8 +373,11 @@ endTime.addEventListener("input", function() {
     var weekend_21 = <?php echo $row["Tarif_Per_Jam(Weekend 17.00-21.00)"]; ?>;
 
     //Jika weekend, kondisi jam booking <=14.00 , <= 17.00, <= 21.00
-    if((yourDate.getDay() == 6 || yourDate.getDay() == 0) && jamBooking <= 14 && hours == 02){
+    if((yourDate.getDay() == 6 || yourDate.getDay() == 0) && jamBooking <= 14 && hours == 02 && lunas.checked){
         valueTarif.textContent = "Rp." + (weekend_14*2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    else if((yourDate.getDay() == 6 || yourDate.getDay() == 0) && jamBooking <= 14 && hours == 02 && dp.checked){
+        valueTarif.textContent = "Rp." + ((weekend_14*2)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
     else if((yourDate.getDay() == 6 || yourDate.getDay() == 0) && jamBooking <= 14 && hours == 04){
         valueTarif.textContent = "Rp." + (weekend_14*4).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
