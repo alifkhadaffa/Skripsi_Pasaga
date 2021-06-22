@@ -243,10 +243,10 @@
             <input type="date" name="tanggal-pilihan" id="datePicker" value="" onchange="handler()" min="<?php echo date("Y-m-d"); ?>"> <br> <br>
 
             <label for="">Pilih jam mulai</label> <br>
-            <input type="time" name="jam-mulai" id="jam-mulai" step="3600" min="06:00" max="21:00" onchange="handler()"> <br> <br>
+            <input type="time" name="jam-mulai" id="jam-mulai" step="3600" min="06:00" max="20:00" onchange="handler()"> <br> <br>
             
             <label for="">Pilih jam selesai</label> <br>
-            <input type="time" name="jam-selesai" id="jam-selesai" step="3600" min="06:00" max="21:00" onchange="handler()"> <br> <br>
+            <input type="time" name="jam-selesai" id="jam-selesai" step="3600" min="06:00" max="20:00" onchange="handler()"> <br> <br>
 
             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="btnAction">Book Now</button>
 
@@ -372,99 +372,191 @@ endTime.addEventListener("input", function() {
     var weekend_17 = <?php echo $row["Tarif_Per_Jam(Weekend 14.00-17.00)"]; ?>;
     var weekend_21 = <?php echo $row["Tarif_Per_Jam(Weekend 17.00-21.00)"]; ?>;
 
-    //Jika weekend, kondisi jam booking <=14.00 , <= 17.00, <= 21.00
-    if((yourDate.getDay() == 6 || yourDate.getDay() == 0) && jamBooking <= 14 && hours == 02 && lunas.checked){
-        valueTarif.textContent = "Rp." + (weekend_14*2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if((yourDate.getDay() == 6 || yourDate.getDay() == 0) && jamBooking <= 14 && hours == 02 && dp.checked){
-        valueTarif.textContent = "Rp." + ((weekend_14*2)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if((yourDate.getDay() == 6 || yourDate.getDay() == 0) && jamBooking <= 14 && hours == 04){
-        valueTarif.textContent = "Rp." + (weekend_14*4).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if((yourDate.getDay() == 6 || yourDate.getDay() == 0) && jamBooking <= 14 && hours == 06){
-        valueTarif.textContent = "Rp." + (weekend_14*6).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if((yourDate.getDay() == 6 || yourDate.getDay() == 0) && jamBooking <= 14 && hours == 08){
-        valueTarif.textContent = "Rp." + (weekend_14*8).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if((yourDate.getDay() == 6 || yourDate.getDay() == 0) && jamBooking > 14 && jamBooking <= 17 && hours == 01){
-        valueTarif.textContent = "Rp." + (weekend_17).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if((yourDate.getDay() == 6 || yourDate.getDay() == 0) && jamBooking > 14 && jamBooking <= 17 && hours == 02){
-        valueTarif.textContent = "Rp." + (weekend_17*2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if((yourDate.getDay() == 6 || yourDate.getDay() == 0) && jamBooking > 14 && jamBooking <= 17 && hours == 03){
-        valueTarif.textContent = "Rp." + (weekend_17*3).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if((yourDate.getDay() == 6 || yourDate.getDay() == 0) && jamBooking > 17 && jamBooking <= 21 && hours == 02){
-        valueTarif.textContent = "Rp." + (weekend_21*2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if((yourDate.getDay() == 6 || yourDate.getDay()) == 0 && jamBooking > 17 && jamBooking <= 21 && hours == 04){
-        valueTarif.textContent = "Rp." + (weekend_21*3).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    var weekend_1618 = parseInt(weekend_17 + weekend_21);
+    var jumat_1618 = parseInt(jumat_17 + jumat_21);
+    var weekday_1618 = parseInt(weekday_17 + weekday_21);
+
+    if(jamBooking <= 14){
+        //kalo weekend
+        if((yourDate.getDay() == 6 || yourDate.getDay() == 0)){
+            if(hours == 02 && lunas.checked){
+                valueTarif.textContent = "Rp." + (weekend_14*2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else if(hours == 02 && dp.checked){
+                valueTarif.textContent = "Rp." + ((weekend_14*2)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            if(hours == 04 && lunas.checked){
+                valueTarif.textContent = "Rp." + (weekend_14*4).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else if(hours == 04 && dp.checked){
+                valueTarif.textContent = "Rp." + ((weekend_14*4)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            if(hours == 06 && lunas.checked){
+                valueTarif.textContent = "Rp." + (weekend_14*6).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else if(hours == 06 && dp.checked){
+                valueTarif.textContent = "Rp." + ((weekend_14*6)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            if(hours == 08 && lunas.checked){
+                valueTarif.textContent = "Rp." + (weekend_14*8).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else if(hours == 08 && dp.checked){
+                valueTarif.textContent = "Rp." + ((weekend_14*8)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+        } //nutup if weekend
+        
+        //kalo jumat
+        else if(yourDate.getDay() == 5){
+            if(hours == 02 && lunas.checked){
+                valueTarif.textContent = "Rp." + (jumat_14*2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else if(hours == 02 && dp.checked){
+                valueTarif.textContent = "Rp." + ((jumat_14*2)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            if(hours == 04 && lunas.checked){
+                valueTarif.textContent = "Rp." + (jumat_14*4).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else if(hours == 04 && dp.checked){
+                valueTarif.textContent = "Rp." + ((jumat_14*4)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            if(hours == 06 && lunas.checked){
+                valueTarif.textContent = "Rp." + (jumat_14*6).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else if(hours == 06 && dp.checked){
+                valueTarif.textContent = "Rp." + ((jumat_14*6)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            if(hours == 08 && lunas.checked){
+                valueTarif.textContent = "Rp." + (jumat_14*8).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else if(hours == 08 && dp.checked){
+                valueTarif.textContent = "Rp." + ((jumat_14*8)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+        } //nutup if jumat
+
+        //kalo weekday
+        else if(yourDate.getDay() < 5){
+            if(hours == 02 && lunas.checked){
+                valueTarif.textContent = "Rp." + (weekday_14*2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else if(hours == 02 && dp.checked){
+                valueTarif.textContent = "Rp." + ((weekday_14*2)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            if(hours == 04 && lunas.checked){
+                valueTarif.textContent = "Rp." + (weekday_14*4).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else if(hours == 04 && dp.checked){
+                valueTarif.textContent = "Rp." + ((weekday_14*4)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            if(hours == 06 && lunas.checked){
+                valueTarif.textContent = "Rp." + (weekday_14*6).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else if(hours == 06 && dp.checked){
+                valueTarif.textContent = "Rp." + ((weekday_14*6)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            if(hours == 08 && lunas.checked){
+                valueTarif.textContent = "Rp." + (weekday_14*8).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else if(hours == 08 && dp.checked){
+                valueTarif.textContent = "Rp." + ((weekday_14*8)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+        } //nutup if weekday
+    } //nutup if jam booking <=14
+
+    else if(jamBooking > 14 && jamBooking <= 16){
+        if((yourDate.getDay() == 6 || yourDate.getDay() == 0)){
+            if(hours == 02 && lunas.checked){
+                valueTarif.textContent = "Rp." + ((weekend_17*2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else if(hours == 02 && dp.checked){
+                valueTarif.textContent = "Rp." + ((weekend_17*2)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+        }
+
+        else if((yourDate.getDay() == 5)){
+            if(hours == 02 && lunas.checked){
+                valueTarif.textContent = "Rp." + ((jumat_17*2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else if(hours == 02 && dp.checked){
+                valueTarif.textContent = "Rp." + ((jumat_17*2)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+        }
+
+        else{
+            if(hours == 02 && lunas.checked){
+                valueTarif.textContent = "Rp." + ((weekday_17*2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else if(hours == 02 && dp.checked){
+                valueTarif.textContent = "Rp." + ((weekday_17*2)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+        }
     }
 
-    //Jika hari jumat, kondisi jam booking <=14.00 , <= 17.00, <= 21.00
-    else if(yourDate.getDay() == 5 && jamBooking <= 14 && hours == 02){
-        valueTarif.textContent = "Rp." + (jumat_14*2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if(yourDate.getDay() == 5 && jamBooking <= 14 && hours == 04){
-        valueTarif.textContent = "Rp." + (jumat_14*4).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if(yourDate.getDay() == 5 && jamBooking <= 14 && hours == 06){
-        valueTarif.textContent = "Rp." + (jumat_14*6).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if(yourDate.getDay() == 5 && jamBooking <= 14 && hours == 08){
-        valueTarif.textContent = "Rp." + (jumat_14*8).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if(yourDate.getDay() == 5 && jamBooking <= 17 && hours == 01){
-        valueTarif.textContent = "Rp." + (jumat_17).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if(yourDate.getDay() == 5 && jamBooking <= 17 && hours == 02){
-        valueTarif.textContent = "Rp." + (jumat_17*4).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if(yourDate.getDay() == 5 && jamBooking <= 17 && hours == 03){
-        valueTarif.textContent = "Rp." + (jumat_17*3).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if(yourDate.getDay() == 5 && jamBooking <= 21 && hours == 02){
-        valueTarif.textContent = "Rp." + (jumat_21*2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if(yourDate.getDay() == 5 && jamBooking <= 21 && hours == 04){
-        valueTarif.textContent = "Rp." + (jumat_17*4).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    
-    
+    else if(jamBooking > 16 && jamBooking <= 18){
+        if((yourDate.getDay() == 6 || yourDate.getDay() == 0)){
+            if(hours == 02 && lunas.checked){
+                valueTarif.textContent = "Rp." + ((weekend_1618)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else if(hours == 02 && dp.checked){
+                valueTarif.textContent = "Rp." + ((weekend_1618)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+        }
 
-    //Jika Weekday
-    else if(yourDate.getDay() < 5 && jamBooking <= 14 && hours == 02){
-        valueTarif.textContent = "Rp." + (weekday_14*2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if(yourDate.getDay() < 5 && jamBooking <= 14 && hours == 04){
-        valueTarif.textContent = "Rp." + (weekday_14*4).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if(yourDate.getDay() < 5 && jamBooking <= 14 && hours == 06){
-        valueTarif.textContent = "Rp." + (weekday_14*6).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if(yourDate.getDay() < 5 && jamBooking <= 14 && hours == 08){
-        valueTarif.textContent = "Rp." + (weekday_14*8).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if(yourDate.getDay() < 5 && jamBooking <= 17 && hours == 01){
-        valueTarif.textContent = "Rp." + (weekday_17).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if(yourDate.getDay() < 5 && jamBooking <= 17 && hours == 02){
-        valueTarif.textContent = "Rp." + (weekday_17*2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if(yourDate.getDay() < 5 && jamBooking <= 17 && hours == 03){
-        valueTarif.textContent = "Rp." + (weekday_17*3).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if(yourDate.getDay() < 5 && jamBooking <= 21 && hours == 02){
-        valueTarif.textContent = "Rp." + (weekday_21*2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    else if(yourDate.getDay() < 5 && jamBooking <= 21 && hours == 04){
-        valueTarif.textContent = "Rp." + (weekday_21*4).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        else if((yourDate.getDay() == 5)){
+            if(hours == 02 && lunas.checked){
+                valueTarif.textContent = "Rp." + ((jumat_1618)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else if(hours == 02 && dp.checked){
+                valueTarif.textContent = "Rp." + ((jumat_1618)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+        }
+
+        else{
+            if(hours == 02 && lunas.checked){
+                valueTarif.textContent = "Rp." + ((weekday_1618*2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else if(hours == 02 && dp.checked){
+                valueTarif.textContent = "Rp." + ((weekday_1618*2)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+        }
     }
 
+    else if(jamBooking > 18 && jamBooking <= 20){
+        if((yourDate.getDay() == 6 || yourDate.getDay() == 0)){
+            if(hours == 02 && lunas.checked){
+                valueTarif.textContent = "Rp." + ((weekend_21*2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else if(hours == 02 && dp.checked){
+                valueTarif.textContent = "Rp." + ((weekend_21*2)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+        }
 
+        else if((yourDate.getDay() == 5)){
+            if(hours == 02 && lunas.checked){
+                valueTarif.textContent = "Rp." + ((jumat_21*2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else if(hours == 02 && dp.checked){
+                valueTarif.textContent = "Rp." + ((jumat_21*2)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+        }
+
+        else{
+            if(hours == 02 && lunas.checked){
+                valueTarif.textContent = "Rp." + ((weekday_21*2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else if(hours == 02 && dp.checked){
+                valueTarif.textContent = "Rp." + ((weekday_21*2)/2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+        }
     }
+} //ini kurawal handler
 </script>
 </html>

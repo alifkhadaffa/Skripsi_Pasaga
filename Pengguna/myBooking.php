@@ -33,6 +33,7 @@
     font-size: 16px;
     color: #fff;
     margin-top: 16px;
+    margin-bottom : 24px;
 }
 input[type="file"] {
   width:70%;
@@ -84,7 +85,8 @@ input[type="file"] {
 
     <?php
         $sql = "SELECT * FROM memesan INNER JOIN fasilitas
-        ON memesan.ID_Fasilitas = fasilitas.ID_Fasilitas INNER JOIN anggota ON memesan.ID_Anggota = anggota.ID_Anggota WHERE memesan.ID_Anggota = {$_SESSION['id']}";
+        ON memesan.ID_Fasilitas = fasilitas.ID_Fasilitas INNER JOIN anggota ON memesan.ID_Anggota = anggota.ID_Anggota WHERE memesan.ID_Anggota = {$_SESSION['id']}
+        ORDER BY Tanggal_Pemakaian ASC";
         $results = mysqli_query($db, $sql) or die( mysqli_error($db));
         $check = mysqli_num_rows($results);
             if($check > 0){
@@ -93,12 +95,28 @@ input[type="file"] {
                     ?>
                 
                 <div class="card-style">
-                    <div class="card" style="height:350px;float:left">
+                    <div class="card" style="height:370px;float:left">
                     <img src="../Image/illus-myBook.png" alt="Lap Futsal" style="width:25%; float: left;">
             
                     <div class="namaFasilitas">
                         <h3 style="color: #0d7a6f;"> <?php echo $row["Nama_Fasilitas"]."<br>"; ?> </h3>
                     </div>
+
+                    <?php
+                            $cariBentrok = "SELECT ID_Fasilitas, COUNT(ID_Fasilitas),Tanggal_Pemakaian,COUNT(Tanggal_Pemakaian) as 'tgl' , Jam_Awal_Pemakaian,COUNT(Jam_Awal_Pemakaian) as 'jam mulai'
+                            FROM memesan
+                            GROUP BY Tanggal_Pemakaian, Jam_Awal_Pemakaian, ID_Fasilitas
+                            HAVING COUNT(Tanggal_Pemakaian) > 1 AND COUNT(Jam_Awal_Pemakaian) > 1 AND COUNT(ID_Fasilitas) > 1";
+                            $resultsss = mysqli_query($db, $cariBentrok) or die( mysqli_error($db));
+                            while($roww = mysqli_fetch_array($resultsss)){
+                                if($roww['ID_Fasilitas'] == $row['ID_Fasilitas'] && $roww['Tanggal_Pemakaian'] == $row['Tanggal_Pemakaian']
+                                && $roww['Jam_Awal_Pemakaian'] == $row['Jam_Awal_Pemakaian']){
+                                echo "<p style='color:#dc0000'> Jadwal Bentrok, Harap cari jadwal baru</p>" 
+                        ?>
+                        <?php 
+                        }
+                    }
+                        ?>
 
                     <div class="detail-peminjam" style="width:30%;float:left">
                         <p style="margin-bottom: 8px;margin-left:24px;color: #0a2724;">Booking untuk Tanggal: <?php $tanggalPakai = date_create($row["Tanggal_Pemakaian"]);

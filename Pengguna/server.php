@@ -81,12 +81,16 @@ if(isset($_POST['btnLogin'])){
     $name = "";
     $email = mysqli_real_escape_string($db , $_POST['login-email']);
     $password = mysqli_real_escape_string($db , $_POST['login-password']);
+    $query = "SELECT * FROM anggota WHERE Email='$email' AND Password='$password'";
+    $res = mysqli_query($db, $query);
+    $row  = mysqli_fetch_array($res);
     if(empty($email)){
         array_push($errors, "Email is required");
     }
     if(empty($password)){
         array_push($errors, "Password is required");
     }
+
 
     if(count($errors) == 0){
         $query = "SELECT * FROM anggota WHERE Email='$email' AND Password='$password'";
@@ -98,6 +102,7 @@ if(isset($_POST['btnLogin'])){
         $_SESSION["password"] = $row['Password'];
         $_SESSION["email"] = $row['Email'];
         $_SESSION["Nomor_Handphone"] = $row['Nomor_Handphone'];
+        $_SESSION["Asal_Instansi"] = $row['Asal_Instansi'];
         $_SESSION['success'] = "You are now logged in";
         
     }
@@ -117,9 +122,20 @@ if (isset($_POST['btnConfirm'])) {
     $jam = time();
     $jamAwal = $_POST['jam-mulai'];
     $jamSelesai = $_POST['jam-selesai'];
-    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan, Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian)
-    VALUES ('{$_SESSION['id']}','1' , '$final_tanggal' , 'Pending' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai')";
+    $jenis_bayar = $_POST['radio'];
+
+    if($jenis_bayar == 'lunas'){
+    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan, Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian,
+    Jenis_Pembayaran)
+    VALUES ('{$_SESSION['id']}','1' , '$final_tanggal' , 'Belum Dibayar' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai', 'Untuk Pembayaran Lunas')";
     $res = mysqli_query($db, $query);
+    }
+    else{
+        $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan, Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian,
+        Jenis_Pembayaran)
+        VALUES ('{$_SESSION['id']}','1' , '$final_tanggal' , 'Belum Dibayar' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai','Untuk Pembayaran Uang Muka')";
+        $res = mysqli_query($db, $query);
+    }
 
     if($res){
         $_SESSION['success'] = "Your booking is on review";
@@ -137,10 +153,20 @@ if (isset($_POST['btnConfirmFutsalB'])) {
     $jam = time();
     $jamAwal = $_POST['jam-mulai'];
     $jamSelesai = $_POST['jam-selesai'];
-    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan,
-    Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian)
-    VALUES ('{$_SESSION['id']}','2' , '$final_tanggal' , 'Pending' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai')";
+    $jenis_bayar = $_POST['radio'];
+
+    if($jenis_bayar == 'lunas'){
+    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan, Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian,
+    Jenis_Pembayaran)
+    VALUES ('{$_SESSION['id']}','2' , '$final_tanggal' , 'Belum Dibayar' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai', 'Untuk Pembayaran Lunas')";
     $res = mysqli_query($db, $query);
+    }
+    else{
+        $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan, Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian,
+        Jenis_Pembayaran)
+        VALUES ('{$_SESSION['id']}','2' , '$final_tanggal' , 'Belum Dibayar' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai','Untuk Pembayaran Uang Muka')";
+        $res = mysqli_query($db, $query);
+    }
 
     if($res){
         $_SESSION['success'] = "Your booking is on review";
@@ -158,10 +184,20 @@ if (isset($_POST['btnConfirmBasketA'])) {
     $jam = time();
     $jamAwal = $_POST['jam-mulai'];
     $jamSelesai = $_POST['jam-selesai'];
-    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan,
-    Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian)
-    VALUES ('{$_SESSION['id']}','3' , '$final_tanggal' , 'Pending' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai')";
+    $jenis_bayar = $_POST['radio'];
+
+    if($jenis_bayar == 'lunas'){
+    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan, Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian,
+    Jenis_Pembayaran)
+    VALUES ('{$_SESSION['id']}','3' , '$final_tanggal' , 'Belum Dibayar' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai', 'Untuk Pembayaran Lunas')";
     $res = mysqli_query($db, $query);
+    }
+    else{
+        $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan, Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian,
+        Jenis_Pembayaran)
+        VALUES ('{$_SESSION['id']}','3' , '$final_tanggal' , 'Belum Dibayar' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai','Untuk Pembayaran Uang Muka')";
+        $res = mysqli_query($db, $query);
+    }
 
     if($res){
         $_SESSION['success'] = "Your booking is on review";
@@ -179,10 +215,20 @@ if (isset($_POST['btnConfirmBasketB'])) {
     $jam = time();
     $jamAwal = $_POST['jam-mulai'];
     $jamSelesai = $_POST['jam-selesai'];
-    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan,
-    Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian)
-    VALUES ('{$_SESSION['id']}','4' , '$final_tanggal' , 'Pending' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai')";
+    $jenis_bayar = $_POST['radio'];
+
+    if($jenis_bayar == 'lunas'){
+    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan, Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian,
+    Jenis_Pembayaran)
+    VALUES ('{$_SESSION['id']}','4' , '$final_tanggal' , 'Belum Dibayar' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai', 'Untuk Pembayaran Lunas')";
     $res = mysqli_query($db, $query);
+    }
+    else{
+        $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan, Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian,
+        Jenis_Pembayaran)
+        VALUES ('{$_SESSION['id']}','4' , '$final_tanggal' , 'Belum Dibayar' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai','Untuk Pembayaran Uang Muka')";
+        $res = mysqli_query($db, $query);
+    }
 
     if($res){
         $_SESSION['success'] = "Your booking is on review";
@@ -200,10 +246,20 @@ if (isset($_POST['btnConfirmVoliA'])) {
     $jam = time();
     $jamAwal = $_POST['jam-mulai'];
     $jamSelesai = $_POST['jam-selesai'];
-    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan,
-    Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian)
-    VALUES ('{$_SESSION['id']}','5' , '$final_tanggal' , 'Pending' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai')";
+    $jenis_bayar = $_POST['radio'];
+
+    if($jenis_bayar == 'lunas'){
+    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan, Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian,
+    Jenis_Pembayaran)
+    VALUES ('{$_SESSION['id']}','5' , '$final_tanggal' , 'Belum Dibayar' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai', 'Untuk Pembayaran Lunas')";
     $res = mysqli_query($db, $query);
+    }
+    else{
+        $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan, Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian,
+        Jenis_Pembayaran)
+        VALUES ('{$_SESSION['id']}','5' , '$final_tanggal' , 'Belum Dibayar' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai','Untuk Pembayaran Uang Muka')";
+        $res = mysqli_query($db, $query);
+    }
 
     if($res){
         $_SESSION['success'] = "Your booking is on review";
@@ -221,10 +277,20 @@ if (isset($_POST['btnConfirmVoliB'])) {
     $jam = time();
     $jamAwal = $_POST['jam-mulai'];
     $jamSelesai = $_POST['jam-selesai'];
-    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan,
-    Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian)
-    VALUES ('{$_SESSION['id']}','6' , '$final_tanggal' , 'Pending' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai')";
+    $jenis_bayar = $_POST['radio'];
+
+    if($jenis_bayar == 'lunas'){
+    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan, Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian,
+    Jenis_Pembayaran)
+    VALUES ('{$_SESSION['id']}','6' , '$final_tanggal' , 'Belum Dibayar' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai', 'Untuk Pembayaran Lunas')";
     $res = mysqli_query($db, $query);
+    }
+    else{
+        $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan, Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian,
+        Jenis_Pembayaran)
+        VALUES ('{$_SESSION['id']}','6' , '$final_tanggal' , 'Belum Dibayar' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai','Untuk Pembayaran Uang Muka')";
+        $res = mysqli_query($db, $query);
+    }
 
     if($res){
         $_SESSION['success'] = "Your booking is on review";
@@ -242,10 +308,20 @@ if (isset($_POST['btnConfirmTennisA'])) {
     $jam = time();
     $jamAwal = $_POST['jam-mulai'];
     $jamSelesai = $_POST['jam-selesai'];
-    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan,
-    Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian)
-    VALUES ('{$_SESSION['id']}','7' , '$final_tanggal' , 'Pending' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai')";
+    $jenis_bayar = $_POST['radio'];
+
+    if($jenis_bayar == 'lunas'){
+    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan, Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian,
+    Jenis_Pembayaran)
+    VALUES ('{$_SESSION['id']}','7' , '$final_tanggal' , 'Belum Dibayar' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai', 'Untuk Pembayaran Lunas')";
     $res = mysqli_query($db, $query);
+    }
+    else{
+        $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan, Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian,
+        Jenis_Pembayaran)
+        VALUES ('{$_SESSION['id']}','7' , '$final_tanggal' , 'Belum Dibayar' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai','Untuk Pembayaran Uang Muka')";
+        $res = mysqli_query($db, $query);
+    }
 
     if($res){
         $_SESSION['success'] = "Your booking is on review";
@@ -263,10 +339,20 @@ if (isset($_POST['btnConfirmTennisB'])) {
     $jam = time();
     $jamAwal = $_POST['jam-mulai'];
     $jamSelesai = $_POST['jam-selesai'];
-    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan,
-    Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian)
-    VALUES ('{$_SESSION['id']}','8' , '$final_tanggal' , 'Pending' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai')";
+    $jenis_bayar = $_POST['radio'];
+
+    if($jenis_bayar == 'lunas'){
+    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan, Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian,
+    Jenis_Pembayaran)
+    VALUES ('{$_SESSION['id']}','8' , '$final_tanggal' , 'Belum Dibayar' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai', 'Untuk Pembayaran Lunas')";
     $res = mysqli_query($db, $query);
+    }
+    else{
+        $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan, Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian,
+        Jenis_Pembayaran)
+        VALUES ('{$_SESSION['id']}','8' , '$final_tanggal' , 'Belum Dibayar' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai','Untuk Pembayaran Uang Muka')";
+        $res = mysqli_query($db, $query);
+    }
 
     if($res){
         $_SESSION['success'] = "Your booking is on review";
@@ -284,10 +370,20 @@ if (isset($_POST['btnConfirmWall'])) {
     $jam = time();
     $jamAwal = $_POST['jam-mulai'];
     $jamSelesai = $_POST['jam-selesai'];
-    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan,
-    Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian)
-    VALUES ('{$_SESSION['id']}','9' , '$final_tanggal' , 'Pending' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai')";
+    $jenis_bayar = $_POST['radio'];
+
+    if($jenis_bayar == 'lunas'){
+    $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan, Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian,
+    Jenis_Pembayaran)
+    VALUES ('{$_SESSION['id']}','9' , '$final_tanggal' , 'Belum Dibayar' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai', 'Untuk Pembayaran Lunas')";
     $res = mysqli_query($db, $query);
+    }
+    else{
+        $query = "INSERT INTO memesan(ID_Anggota, ID_Fasilitas, Tanggal_Pemakaian, Status_Pembayaran, Status_Pemesanan, Jam_Pemesanan, Jam_Awal_Pemakaian, Jam_Selesai_Pemakaian,
+        Jenis_Pembayaran)
+        VALUES ('{$_SESSION['id']}','9' , '$final_tanggal' , 'Belum Dibayar' , 'Pending', NOW(), '$jamAwal' , '$jamSelesai','Untuk Pembayaran Uang Muka')";
+        $res = mysqli_query($db, $query);
+    }
 
     if($res){
         $_SESSION['success'] = "Your booking is on review";
@@ -360,7 +456,7 @@ if(isset($_POST['btnUpload'])){
                 move_uploaded_file($fileTmpName, $fileDestination);
 
                 //Insert into db
-                $sql = "UPDATE memesan SET bukti_pembayaran = '$fileNameNew' WHERE ID_Pemesanan = '$idPemesanan'";
+                $sql = "UPDATE memesan SET bukti_pembayaran = '$fileNameNew' , Status_Pembayaran = 'Menunggu Verifikasi' WHERE ID_Pemesanan = '$idPemesanan'";
                 mysqli_query($db , $sql);
 
                 header("Location: myBooking.php?uploadSuccess");

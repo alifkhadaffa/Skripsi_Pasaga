@@ -19,7 +19,7 @@ if(isset($_POST['submitMasukan'])){
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'unparpasaga@gmail.com';
-        $mail->Password = 'raisA6690';
+        $mail->Password = 'raisA66900';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = '587';
 

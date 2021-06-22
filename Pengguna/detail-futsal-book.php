@@ -168,7 +168,7 @@
 </head>
 <body>
     <div class="top-content"></div>
-        <a href="book.html"><i class="fa fa-arrow-left" aria-hidden="true" style="color: #0d7a6f; font-size: 24px;"></i></a>
+        <a href="book.php"><i class="fa fa-arrow-left" aria-hidden="true" style="color: #0d7a6f; font-size: 24px;"></i></a>
         <h1>Lapangan Futsal A</h1>
     </div>
     <div class="header-photo"></div>

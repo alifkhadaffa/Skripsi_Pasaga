@@ -116,8 +116,8 @@
 
                         <div class="form-row">
                             <div class="col-lg-7">
-                                <input type="tel" placeholder="Phone number" class="form-control my-3 p-3" maxlength="12"
-                                name="phone" required>
+                                <input type="number" placeholder="Phone number" class="form-control my-3 p-3"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                maxlength="12" name="phone" required>
                             </div>
                         </div>
                         <div class="form-row">

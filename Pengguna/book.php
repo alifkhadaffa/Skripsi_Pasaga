@@ -1,4 +1,4 @@
-<?php?>
+<?php include('server.php') ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,8 +50,13 @@
                     <i class='bx bx-x'></i>
                 </div>
 
+                <div class="nav__menu" id="nav-menu">
+                <div class="nav__close" id="nav-close">
+                    <i class='bx bx-x'></i>
+                </div>
+
                 <ul class="nav__list">
-                    <li class="nav__item"><a href="book.php" class="nav__link active" style="text-decoration:underline;">Book a court</a></li>
+                    <li class="nav__item"><a href="book.php" class="nav__link active">Book a court</a></li>
                     <li class="nav__item"><a href="howto.php" class="nav__link">How to book</a></li>
                     <li class="nav__item"><a href="about.php" class="nav__link">About us</a></li>
                     <li class="nav__item"><a href="login.php" class="nav__link">Log in</a></li>
@@ -71,14 +76,7 @@
             <h4 style="font-weight: lighter;">Mari berolahraga di Pasaga Unpar dan rasakan pengalaman<br>berolahraga yang menyenangkan</h4>
         </div>
 
-        <div class="search-container">
-            <form action="/action_page.php">
-              <input type="text" placeholder="Cari Lapangan" name="search">
-              <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
-
-        <a href="detail-futsal-book.html" class="card-link">
+        <a href="detail-futsal-book.php" class="card-link">
         <div class="card">
             <img src="../Image/futsal.jpg" alt="Lap Futsal" style="width:100%">
             
@@ -91,11 +89,13 @@
                 </p>
                 <div class="iconCard">
                 <p style="color:#0d7a6f;">Jam operasional <i class="fa fa-clock-o" style="color: #0d7a6f;"></i> : 06.00 - 21.00 WIB</p>
-                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp40.000 - Rp100.000 </p>
+                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp66.000 - Rp163.000 (*per jam) </p>
                 </div>
             </div>
           </div>
         </a>
+
+        <a href="#" class="card-link">
           <div class="card">
             <img src="../Image/futsalB.jpg" alt="Lap Futsal" style="width:100%">
             
@@ -108,11 +108,13 @@
                 </p>
                 <div class="iconCard">
                 <p style="color:#0d7a6f;">Jam operasional <i class="fa fa-clock-o" style="color: #0d7a6f;"></i> : 06.00 - 21.00 WIB</p>
-                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp40.000 - Rp100.000 </p>
+                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp79.000 - Rp193.000 (*per jam) </p>
                 </div>
             </div>
           </div>
+        </a>
 
+        <a href="#" class="card-link">
           <div class="card">
             <img src="../Image/basket.jpg" alt="Lap Futsal" style="width:100%">
             
@@ -125,11 +127,13 @@
                 </p>
                 <div class="iconCard">
                 <p style="color:#0d7a6f;">Jam operasional <i class="fa fa-clock-o" style="color: #0d7a6f;"></i> : 06.00 - 21.00 WIB</p>
-                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp40.000 - Rp100.000 </p>
+                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp79.000 - Rp193.000 (*per jam) </p>
                 </div>
             </div>
           </div>
+        </a>
 
+        <a href="#" class="card-link">
           <div class="card">
             <img src="../Image/basketB.jpg" alt="Lap Futsal" style="width:100%">
             
@@ -142,28 +146,51 @@
                 </p>
                 <div class="iconCard">
                 <p style="color:#0d7a6f; margin-top: 16px;">Jam operasional <i class="fa fa-clock-o" style="color: #0d7a6f;"></i> : 06.00 - 21.00 WIB</p>
-                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp40.000 - Rp100.000 </p>
+                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp79.000 - Rp193.000 (*per jam) </p>
                 </div>
             </div>
           </div>
+        </a>
 
+        <a href="#" class="card-link">
           <div class="card">
-            <img src="../Image/tennis.jpg" alt="Lap Futsal" style="width:100%">
+            <img src="../Image/tennis.jpg" alt="Lap Tennis" style="width:100%">
             
             <div class="namaFasilitas">
-                <h3 style="color: #0d7a6f;">Lapangan Tennis</h3>
+                <h3 style="color: #0d7a6f;">Lapangan Tennis A</h3>
             </div>
 
             <div class="detail-peminjam">
-                <p style="margin-bottom: 8px;color: #0a2724;">Lapangan Tennis A dan B adalah Lapangan outdoor untuk olahraga tennis yang terletak dibawah lapangan basket, terletak.
+                <p style="margin-bottom: 8px;color: #0a2724;">Lapangan Tennis A adalah Lapangan outdoor untuk olahraga tennis yang terletak dibawah lapangan basket, lapangan ini bisa digunakan untuk olahraga rutin.
                 </p>
                 <div class="iconCard">
                 <p style="color:#0d7a6f; margin-top: 16px;">Jam operasional <i class="fa fa-clock-o" style="color: #0d7a6f;"></i> : 06.00 - 21.00 WIB</p>
-                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp40.000 - Rp100.000 </p>
+                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp30.000 - Rp104.000 (*per jam) </p>
                 </div>
             </div>
           </div>
+        </a>
 
+        <a href="#" class="card-link">
+          <div class="card">
+            <img src="../Image/tennis.jpg" alt="Lap Tennis" style="width:100%">
+            
+            <div class="namaFasilitas">
+                <h3 style="color: #0d7a6f;">Lapangan Tennis B</h3>
+            </div>
+
+            <div class="detail-peminjam">
+                <p style="margin-bottom: 8px;color: #0a2724;">Lapangan Tennis B adalah Lapangan outdoor untuk olahraga tennis yang terletak dibawah lapangan basket, lapangan ini bisa digunakan untuk olahraga rutin.
+                </p>
+                <div class="iconCard">
+                <p style="color:#0d7a6f; margin-top: 16px;">Jam operasional <i class="fa fa-clock-o" style="color: #0d7a6f;"></i> : 06.00 - 21.00 WIB</p>
+                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp30.000 - Rp104.000 (*per jam) </p>
+                </div>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="card-link">
           <div class="card">
             <img src="../Image/VoliB.jpg" alt="Lap Futsal" style="width:100%;">
             
@@ -172,15 +199,17 @@
             </div>
 
             <div class="detail-peminjam">
-                <p style="margin-bottom: 8px;color: #0a2724;">Lapangan Tennis A dan B adalah Lapangan outdoor untuk olahraga tennis yang terletak dibawah lapangan basket, terletak.
+                <p style="margin-bottom: 8px;color: #0a2724;">Lapangan voli A adalah lapangan yang terletak bersamaan dengan lapangan basket dan bisa dipergunakan untuk latihan maupun berolahraga.
                 </p>
                 <div class="iconCard">
                 <p style="color:#0d7a6f; margin-top: 16px;">Jam operasional <i class="fa fa-clock-o" style="color: #0d7a6f;"></i> : 06.00 - 21.00 WIB</p>
-                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp40.000 - Rp100.000 </p>
+                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp79.000 - Rp193.000 (*per jam) </p>
                 </div>
             </div>
           </div>
+          </a>
 
+          <a href="#" class="card-link">
           <div class="card">
             <img src="../Image/VoliA.jpg" alt="Lap Futsal" style="width:100%">
             
@@ -193,11 +222,14 @@
                 </p>
                 <div class="iconCard">
                 <p style="color:#0d7a6f; margin-top: 16px;">Jam operasional <i class="fa fa-clock-o" style="color: #0d7a6f;"></i> : 06.00 - 21.00 WIB</p>
-                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp40.000 - Rp100.000 </p>
+                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp79.000 - Rp193.000 (*per jam) </p>
                 </div>
             </div>
           </div>
+          </a>
 
+
+          <a href="#" class="card-link">
           <div class="card">
             <img src="../Image/wall-climb.jpg" alt="Lap Wall Climbing">
             
@@ -209,11 +241,12 @@
                 <p style="margin-bottom: 8px;color: #0a2724;">Wall Climbing diperuntukan untuk olahraga maupun latihan panjat tebing dan sudah berstandar internasional.
                 </p>
                 <div class="iconCard">
-                <p style="color:#0d7a6f; margin-top: 16px;">Jam operasional <i class="fa fa-clock-o" style="color: #0d7a6f;"></i> : 06.00 - 21.00 WIB</p>
-                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp40.000 - Rp100.000 </p>
+                <p style="color:#0d7a6f; margin-top: 16px;">Jam operasional <i class="fa fa-clock-o" style="color: #0d7a6f;"></i> : 06.00 - 18.00 WIB</p>
+                <p style="color:#0d7a6f;margin-top: 16px;">Kisaran Tarif <i class="fa fa-usd" style="color: #0d7a6f;"></i>: Rp73.000 (*per jam) </p>
                 </div>
             </div>
           </div>
+          </a>
 
 
     </div>

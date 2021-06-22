@@ -60,7 +60,6 @@
                 <li><a href="../index.php" class="active"><i class="fas fa-file-alt" aria-hidden="true"></i>Pemesanan</a></li>
                 <li><a href="../statistik.php"><i class="fas fa-chart-bar"></i>Statistik</a></li>
                 <li><a href="../kelola.php" style="text-decoration: underline;"><i class="fas fa-volleyball-ball"></i>Kelola Fasilitas</a></li>
-                <li><a href="../verifikasi.php"><i class="fas fa-user"></i>Verifikasi Anggota</a></li>
             </ul> 
             <div class="social_media">
               <a href="#"><i class="fab fa-facebook-f"></i></a>
